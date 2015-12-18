@@ -1,14 +1,14 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+
+#include <QVTKWidget>
+#include <vtkRenderer.h>
+#include <vtkRenderWindow.h>
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
