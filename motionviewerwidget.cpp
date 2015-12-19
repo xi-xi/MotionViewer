@@ -58,7 +58,7 @@ void MotionViewerWidget::initShaders()
 
 void MotionViewerWidget::initTextures()
 {
-    this->texture = new QOpenGLTexture(QImage(":/texture.png").mirrored());
+    this->texture = new QOpenGLTexture(QImage(":/blackboard.png").mirrored());
     this->texture->setMinificationFilter(QOpenGLTexture::Nearest);
     this->texture->setMagnificationFilter(QOpenGLTexture::Linear);
     this->texture->setWrapMode(QOpenGLTexture::Repeat);
@@ -75,6 +75,7 @@ void MotionViewerWidget::resizeGL(int w, int h)
 void MotionViewerWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(1.0, 1.0, 1.0, 1.0);
     this->texture->bind();
     QMatrix4x4 matrix;
     matrix.translate(0.0, 0.0, -5.0);
