@@ -2,8 +2,11 @@
 #include <QtGlobal>
 #include <QDebug>
 
+#include "motiongeometryengine.h"
+
 MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
+    geometries(0),
     texture(0)
 {
 }
@@ -12,6 +15,7 @@ MotionViewerWidget::~MotionViewerWidget()
 {
     this->makeCurrent();
     delete this->texture;
+    delete this->geometries;
     this->doneCurrent();
 }
 
@@ -24,6 +28,8 @@ void MotionViewerWidget::initializeGL()
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
+
+    this->geometries = new MotionGeometryEngine();
 }
 
 void MotionViewerWidget::initShaders()
@@ -74,4 +80,5 @@ void MotionViewerWidget::paintGL()
     matrix.translate(0.0, 0.0, -5.0);
     this->program.setUniformValue("mvp_matrix", projection * matrix);
     this->program.setUniformValue("texture", 0);
+    this->geometries->drawMotionGeometry(&this->program);
 }

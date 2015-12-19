@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    motionviewerwidget.cpp
+    motionviewerwidget.cpp \
+    motiongeometryengine.cpp
 
 HEADERS  += mainwindow.h \
-    motionviewerwidget.h
+    motionviewerwidget.h \
+    motiongeometryengine.h
 
 FORMS    +=
 

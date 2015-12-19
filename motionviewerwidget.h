@@ -9,6 +9,8 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 
+class MotionGeometryEngine;
+
 class MotionViewerWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
@@ -25,6 +27,8 @@ protected:
     void initTextures();
 
 private:
+    MotionGeometryEngine *geometries;
+
     QOpenGLShaderProgram program;
     QOpenGLTexture *texture;
     QMatrix4x4 projection;
