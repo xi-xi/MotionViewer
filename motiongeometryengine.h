@@ -1,10 +1,11 @@
 #ifndef MOTIONGEOMETRYENGINE_H
 #define MOTIONGEOMETRYENGINE_H
-#include <QOpenGLFunctions>
-#include <QOpenGLShaderProgram>
-#include <QOpenGLBuffer>
+#include <QList>
 
-class MotionGeometryEngine : protected QOpenGLFunctions
+class QOpenGLShaderProgram;
+class BoxGeometryEngine;
+
+class MotionGeometryEngine
 {
 public:
     MotionGeometryEngine();
@@ -13,10 +14,7 @@ public:
     void drawMotionGeometry(QOpenGLShaderProgram* program);
 
 private:
-    void initMotionGeometry();
-
-    QOpenGLBuffer arraybuf;
-    QOpenGLBuffer indexBuf;
+    QList<BoxGeometryEngine*> boxes;
 };
 
 #endif // MOTIONGEOMETRYENGINE_H
