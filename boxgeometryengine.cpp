@@ -145,3 +145,38 @@ void BoxGeometryEngine::drawBoxGeometry(QOpenGLShaderProgram *program)
 
     glDrawElements(GL_TRIANGLE_STRIP, 34, GL_UNSIGNED_SHORT, 0);
 }
+
+void BoxGeometryEngine::setWidth(float val)
+{
+    this->width = val;
+    this->updateVertices();
+}
+
+void BoxGeometryEngine::setHeight(float val){
+    this->height = val;
+    this->updateVertices();
+}
+
+void BoxGeometryEngine::setDepth(float val){
+    this->depth = val;
+    this->updateVertices();
+}
+
+void BoxGeometryEngine::setWHD(float w, float h, float d){
+    this->width = w;
+    this->height = h;
+    this->depth = d;
+    this->updateVertices();
+}
+
+float BoxGeometryEngine::getWidth()const{
+    return this->width;
+}
+
+float BoxGeometryEngine::getHeight()const{
+    return this->height;
+}
+
+float BoxGeometryEngine::getDepth()const{
+    return this->depth;
+}

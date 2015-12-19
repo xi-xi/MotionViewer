@@ -4,8 +4,6 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLBuffer>
-#include <QVector2D>
-#include <QVector3D>
 
 class BoxGeometryEngine : protected QOpenGLFunctions
 {
@@ -15,6 +13,14 @@ public:
     virtual ~BoxGeometryEngine();
 
     void drawBoxGeometry(QOpenGLShaderProgram* program);
+
+    void setWidth(float val);
+    void setHeight(float val);
+    void setDepth(float val);
+    void setWHD(float w, float h, float d);
+    float getWidth()const;
+    float getHeight()const;
+    float getDepth()const;
 
 private:
     void initBoxGeometry();
