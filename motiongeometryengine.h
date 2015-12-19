@@ -1,7 +1,7 @@
 #ifndef MOTIONGEOMETRYENGINE_H
 #define MOTIONGEOMETRYENGINE_H
 #include <QList>
-
+#include <QBasicTimer>
 class QOpenGLShaderProgram;
 class BoxGeometryEngine;
 
@@ -15,6 +15,7 @@ public:
 
 private:
     QList<BoxGeometryEngine*> boxes;
+    QBasicTimer timer;
 };
 
 #endif // MOTIONGEOMETRYENGINE_H
