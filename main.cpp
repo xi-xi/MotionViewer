@@ -9,7 +9,9 @@ int main(int argc, char *argv[])
     format.setDepthBufferSize(24);
     QSurfaceFormat::setDefaultFormat(format);
     MainWindow w;
+    w.setBaseSize(1280, 960);
     w.show();
+    w.resize(1280, 960);
 
     return a.exec();
 }
