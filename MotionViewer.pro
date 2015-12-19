@@ -13,8 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    motionviewerwidget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    motionviewerwidget.h
 
 FORMS    +=
+
+RESOURCES += \
+    shaders.qrc \
+    textures.qrc
