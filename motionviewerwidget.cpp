@@ -52,7 +52,7 @@ void MotionViewerWidget::initShaders()
 
 void MotionViewerWidget::initTextures()
 {
-    this->texture = new QOpenGLTexture(QImage(":/resource/texture.png").mirrored());
+    this->texture = new QOpenGLTexture(QImage(":/texture.png").mirrored());
     this->texture->setMinificationFilter(QOpenGLTexture::Nearest);
     this->texture->setMagnificationFilter(QOpenGLTexture::Linear);
     this->texture->setWrapMode(QOpenGLTexture::Repeat);
