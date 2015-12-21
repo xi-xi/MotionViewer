@@ -7,6 +7,7 @@
 
 MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
+    playing(false),
     current_frame(1),
     geometries(0),
     texture(0)
@@ -97,4 +98,18 @@ void MotionViewerWidget::paintGL()
 void MotionViewerWidget::openMotionFile(const QString &filename){
     this->motion_loaded = this->motion->open(filename);
     emit this->motionChanged();
+}
+
+bool MotionViewerWidget::isPlaying()const{
+    return this->playing;
+}
+
+void MotionViewerWidget::play()
+{
+    this->playing = !this->playing;
+}
+
+void MotionViewerWidget::stop()
+{
+    this->playing = !this->playing;
 }

@@ -19,8 +19,12 @@ public:
     explicit MotionViewerWidget(QWidget* parent = 0);
     ~MotionViewerWidget();
 
+    bool isPlaying()const;
+
 public slots:
     void openMotionFile(const QString& filename);
+    void play();
+    void stop();
 
 signals:
     void motionChanged();
@@ -34,6 +38,8 @@ protected:
     void initTextures();
 
 private:
+    bool playing;
+
     int current_frame;
     Motion* motion;
     bool motion_loaded;

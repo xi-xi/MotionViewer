@@ -47,6 +47,7 @@ void MainWindow::initLogic()
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
     this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
+    this->connect(this->play_stop, SIGNAL(triggered()), this, SLOT(playstopButtonClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -68,4 +69,16 @@ void MainWindow::openFile()
 
 void MainWindow::configure()
 {
+}
+
+void MainWindow::playstopButtonClicked()
+{
+    if(this->viewerwidget->isPlaying()){
+        this->viewerwidget->stop();
+        this->play_stop->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPlay));
+    }
+    else{
+        this->viewerwidget->play();
+        this->play_stop->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPause));
+    }
 }

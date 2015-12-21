@@ -20,6 +20,7 @@ public slots:
     void openFile();
     void openMotionFile(const QString& filename);
     void configure();
+    void playstopButtonClicked();
 
 signals:
     void motionFileChanged(const QString& filename);
