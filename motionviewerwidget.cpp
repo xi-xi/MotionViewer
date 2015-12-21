@@ -2,6 +2,7 @@
 #include <QtGlobal>
 #include <QDebug>
 
+#include "motion.h"
 #include "motiongeometryengine.h"
 
 MotionViewerWidget::MotionViewerWidget(QWidget* parent):
@@ -9,6 +10,9 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     geometries(0),
     texture(0)
 {
+    this->motion = new Motion(this);
+    this->motion_loaded = false;
+    this->connect(this, SIGNAL(motionChanged()), this, SLOT(update()));
 }
 
 MotionViewerWidget::~MotionViewerWidget()
@@ -76,9 +80,19 @@ void MotionViewerWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 1.0, 1.0, 1.0);
+    if(!this->motion_loaded)
+        return;
     this->texture->bind();
     QMatrix4x4 matrix;
     matrix.translate(0.0, 0.0, -5.0);
     this->program.setUniformValue("texture", 0);
-    this->geometries->drawMotionGeometry(&this->program, projection * matrix);
+    this->geometries->drawMotionGeometry(
+                &this->program,
+                projection * matrix
+                );
+}
+
+void MotionViewerWidget::openMotionFile(const QString &filename){
+    this->motion_loaded = this->motion->open(filename);
+    emit this->motionChanged();
 }

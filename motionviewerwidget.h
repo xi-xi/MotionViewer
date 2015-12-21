@@ -10,6 +10,7 @@
 #include <QOpenGLTexture>
 
 class MotionGeometryEngine;
+class Motion;
 
 class MotionViewerWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -17,6 +18,12 @@ class MotionViewerWidget : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     explicit MotionViewerWidget(QWidget* parent = 0);
     ~MotionViewerWidget();
+
+public slots:
+    void openMotionFile(const QString& filename);
+
+signals:
+    void motionChanged();
 
 protected:
     void initializeGL();
@@ -27,6 +34,9 @@ protected:
     void initTextures();
 
 private:
+    Motion* motion;
+    bool motion_loaded;
+
     MotionGeometryEngine *geometries;
 
     QOpenGLShaderProgram program;
