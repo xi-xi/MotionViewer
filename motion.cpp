@@ -57,7 +57,7 @@ bool Motion::buildProperty(const QString &name, const QString &value){
     }
     for(int i = 0;i<names.size();++i){
         bool is_float = true;
-        float float_value = vals[i].toFloat(*is_float);
+        float float_value = vals[i].toFloat(&is_float);
         if(is_float){
             this->properties[names[i]] = float_value;
         }
@@ -69,11 +69,11 @@ bool Motion::buildPose(const QString &line, Pose *pose){
     bool dst = true;
     QStringList cells = line.split(",");
     int frame =cells[0].toInt();
-    for(int i = 2;i<cells.size() && dst;i+=3){
+    for(int i = 2;i<cells.size();i+=3){
         bool x_ok, y_ok, z_ok;
         float x = cells[i].toFloat(&x_ok);
-        float y = cells[i].toFloat(&y_ok);
-        float z = cells[i].toFloat(&z_ok);
+        float y = cells[i+1].toFloat(&y_ok);
+        float z = cells[i+2].toFloat(&z_ok);
         if(x_ok && y_ok && z_ok){
             pose->addJointData(markers[(i - 2) / 3], x, y, z);
         }
