@@ -30,7 +30,6 @@ BoxGeometryEngine::BoxGeometryEngine(float w, float h, float d):
 {
     initializeOpenGLFunctions();
     this->arraybuf.create();
-    this->arraybuf.setUsagePattern(QOpenGLBuffer::DynamicDraw);
     this->indexbuf.create();
     this->initBoxGeometry();
 }
