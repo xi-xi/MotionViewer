@@ -71,7 +71,7 @@ void BoxGeometryEngine::initBoxGeometry()
     };
     this->arraybuf.bind();
     this->arraybuf.allocate(vertices, 24 * sizeof(VertexData));
-    this->updateVertices();
+    this->updateModelMatrix();
     GLushort indices[] = {
         0,  1,  2,  3,  3,     // Face 0 - triangle strip ( v0,  v1,  v2,  v3)
         4,  4,  5,  6,  7,  7, // Face 1 - triangle strip ( v4,  v5,  v6,  v7)
@@ -84,50 +84,13 @@ void BoxGeometryEngine::initBoxGeometry()
     this->indexbuf.allocate(indices, 34 * sizeof(GLushort));
 }
 
-void BoxGeometryEngine::updateVertices()
+void BoxGeometryEngine::updateModelMatrix()
 {
     const float x = this->width / 2.0;
     const float y = this->height / 2.0;
     const float z = this->depth / 2.0;
-    VertexData vertices[] = {
-        // Vertex data for face 0
-        {QVector3D(-x, -y,  z), QVector2D(0.0f, 0.0f)},  // v0
-        {QVector3D( x, -y,  z), QVector2D(0.33f, 0.0f)}, // v1
-        {QVector3D(-x,  y,  z), QVector2D(0.0f, 0.5f)},  // v2
-        {QVector3D( x,  y,  z), QVector2D(0.33f, 0.5f)}, // v3
-
-        // Vertex data for face 1
-        {QVector3D( x, -y,  z), QVector2D( 0.0f, 0.5f)}, // v4
-        {QVector3D( x, -y, -z), QVector2D(0.33f, 0.5f)}, // v5
-        {QVector3D( x,  y,  z), QVector2D(0.0f, 1.0f)},  // v6
-        {QVector3D( x,  y, -z), QVector2D(0.33f, 1.0f)}, // v7
-
-        // Vertex data for face 2
-        {QVector3D( x, -y, -z), QVector2D(0.66f, 0.5f)}, // v8
-        {QVector3D(-x, -y, -z), QVector2D(1.0f, 0.5f)},  // v9
-        {QVector3D( x,  y, -z), QVector2D(0.66f, 1.0f)}, // v10
-        {QVector3D(-x,  y, -z), QVector2D(1.0f, 1.0f)},  // v11
-
-        // Vertex data for face 3
-        {QVector3D(-x, -y, -z), QVector2D(0.66f, 0.0f)}, // v12
-        {QVector3D(-x, -y,  z), QVector2D(1.0f, 0.0f)},  // v13
-        {QVector3D(-x,  y, -z), QVector2D(0.66f, 0.5f)}, // v14
-        {QVector3D(-x,  y,  z), QVector2D(1.0f, 0.5f)},  // v15
-
-        // Vertex data for face 4
-        {QVector3D(-x, -y, -z), QVector2D(0.33f, 0.0f)}, // v16
-        {QVector3D( x, -y, -z), QVector2D(0.66f, 0.0f)}, // v17
-        {QVector3D(-x, -y,  z), QVector2D(0.33f, 0.5f)}, // v18
-        {QVector3D( x, -y,  z), QVector2D(0.66f, 0.5f)}, // v19
-
-        // Vertex data for face 5
-        {QVector3D(-x,  y,  z), QVector2D(0.33f, 0.5f)}, // v20
-        {QVector3D( x,  y,  z), QVector2D(0.66f, 0.5f)}, // v21
-        {QVector3D(-x,  y, -z), QVector2D(0.33f, 1.0f)}, // v22
-        {QVector3D( x,  y, -z), QVector2D(0.66f, 1.0f)}  // v23
-    };
-    this->arraybuf.bind();
-    this->arraybuf.write(0, vertices, 24 * sizeof(VertexData));
+    this->model_matrix = QMatrix4x4();
+    this->model_matrix.scale(x, y, z);
 }
 
 void BoxGeometryEngine::drawBoxGeometry(QOpenGLShaderProgram *program, const QMatrix4x4 &vp_matrix)
@@ -150,24 +113,24 @@ void BoxGeometryEngine::drawBoxGeometry(QOpenGLShaderProgram *program, const QMa
 void BoxGeometryEngine::setWidth(float val)
 {
     this->width = val;
-    this->updateVertices();
+    this->updateModelMatrix();
 }
 
 void BoxGeometryEngine::setHeight(float val){
     this->height = val;
-    this->updateVertices();
+    this->updateModelMatrix();
 }
 
 void BoxGeometryEngine::setDepth(float val){
     this->depth = val;
-    this->updateVertices();
+    this->updateModelMatrix();
 }
 
 void BoxGeometryEngine::setWHD(float w, float h, float d){
     this->width = w;
     this->height = h;
     this->depth = d;
-    this->updateVertices();
+    this->updateModelMatrix();
 }
 
 float BoxGeometryEngine::getWidth()const{

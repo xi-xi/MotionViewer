@@ -26,7 +26,7 @@ public:
 
 private:
     void initBoxGeometry();
-    void updateVertices();
+    void updateModelMatrix();
 
     float width;
     float height;
