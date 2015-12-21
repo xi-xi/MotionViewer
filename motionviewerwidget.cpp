@@ -7,7 +7,7 @@
 
 MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
-    current_frame(0),
+    current_frame(1),
     geometries(0),
     texture(0)
 {
