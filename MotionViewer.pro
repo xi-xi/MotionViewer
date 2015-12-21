@@ -19,7 +19,6 @@ SOURCES += main.cpp\
     motionviewerwidget.cpp \
     motiongeometryengine.cpp \
     boxgeometryengine.cpp \
-    motionreader.cpp \
     motion.cpp \
     pose.cpp
 
@@ -27,7 +26,6 @@ HEADERS  += mainwindow.h \
     motionviewerwidget.h \
     motiongeometryengine.h \
     boxgeometryengine.h \
-    motionreader.h \
     motion.h \
     pose.h
 
