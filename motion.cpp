@@ -75,7 +75,7 @@ bool Motion::buildPose(const QString &line, Pose *pose){
         float y = cells[i+1].toFloat(&y_ok);
         float z = cells[i+2].toFloat(&z_ok);
         if(x_ok && y_ok && z_ok){
-            pose->addJointData(markers[(i - 2) / 3], x, y, z);
+            pose->addJointData(markers[i], x, y, z);
         }
     }
     if(dst){
