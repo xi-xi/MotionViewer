@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+class QMenu;
+class QAction;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -18,6 +21,11 @@ signals:
     void motionFileChanged(const QString& filename);
 
 private:
+    QMenu *filemenu;
+    QAction *openaction;
+    QAction *closeaction;
+    QMenu *helpmenu;
+    QAction *aboutcaction;
 };
 
 #endif // MAINWINDOW_H
