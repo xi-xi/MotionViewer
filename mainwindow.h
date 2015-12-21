@@ -21,6 +21,8 @@ public slots:
     void openMotionFile(const QString& filename);
     void configure();
     void playstopButtonClicked();
+    void backButtonClicked();
+    void nextButtonClicked();
 
 signals:
     void motionFileChanged(const QString& filename);
@@ -32,7 +34,9 @@ private:
     QAction *closeaction;
     MotionViewerWidget *viewerwidget;
     QToolBar *operationbar;
+    QAction *back;
     QAction *play_stop;
+    QAction *next;
 
     void initUI();
     void initLogic();

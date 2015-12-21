@@ -1,6 +1,8 @@
 #include "motionviewerwidget.h"
 #include <QtGlobal>
+#include <QTimer>
 #include <QDebug>
+#include <QDateTime>
 
 #include "motion.h"
 #include "motiongeometryengine.h"
@@ -15,10 +17,15 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     this->motion = new Motion(this);
     this->motion_loaded = false;
     this->connect(this, SIGNAL(motionChanged()), this, SLOT(update()));
+    this->timer = new QTimer(this);
+    this->timer->setInterval(this->FRAME_UPDATE_MSEC);
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(updateCurrentFrame()));
+    connect(this, SIGNAL(motionChanged()), this, SLOT(updateMotionProperties()));
 }
 
 MotionViewerWidget::~MotionViewerWidget()
 {
+    this->timer->stop();
     this->makeCurrent();
     delete this->texture;
     delete this->geometries;
@@ -100,16 +107,56 @@ void MotionViewerWidget::openMotionFile(const QString &filename){
     emit this->motionChanged();
 }
 
+void MotionViewerWidget::updateMotionProperties()
+{
+    if(this->motion_loaded){
+        this->fps = this->motion->getProperty("DataRate");
+        this->max_frame = this->motion->getProperty("NumFrames");
+    }
+}
+
 bool MotionViewerWidget::isPlaying()const{
     return this->playing;
 }
 
 void MotionViewerWidget::play()
 {
-    this->playing = !this->playing;
+    this->timer->start();
+    this->playing = true;
+    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
 }
 
 void MotionViewerWidget::stop()
 {
-    this->playing = !this->playing;
+    this->timer->stop();
+    this->playing = false;
+    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+}
+
+void MotionViewerWidget::updateCurrentFrame()
+{
+    qDebug() << this->current_frame;
+    if(this->current_frame >= this->max_frame){
+        this->current_frame = this->max_frame;
+    }
+    else{
+        this->timer_tick_count++;
+        this->current_frame = this->timer_tick_count * this->FRAME_UPDATE_MSEC / 1000.0 * this->fps;
+        if(this->current_frame >= this->max_frame){
+            this->current_frame = this->max_frame;
+        }
+        emit this->currentFrameChanged(this->current_frame);
+    }
+}
+
+void MotionViewerWidget::setCurrentFrame(int frame){
+    this->current_frame = frame;
+    if(frame <= 0){
+        this->current_frame = this->max_frame;
+    }
+    else if(this->current_frame >= this->max_frame){
+        this->current_frame = this->max_frame;
+    }
+    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    emit this->currentFrameChanged(this->current_frame);
 }

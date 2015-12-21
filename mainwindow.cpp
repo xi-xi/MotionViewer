@@ -23,7 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->operationbar->setAllowedAreas(Qt::BottomToolBarArea);
     this->operationbar->setMovable(false);
 
+    this->back = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipBackward), "Back", this);
     this->play_stop = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaPlay),"Play", this);
+    this->next = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipForward), "Next", this);
     this->initUI();
     this->initLogic();
 
@@ -38,7 +40,9 @@ void MainWindow::initUI()
     this->filemenu->addSeparator();
     this->filemenu->addAction(this->closeaction);
     this->addToolBar(Qt::BottomToolBarArea, this->operationbar);
+    this->operationbar->addAction(this->back);
     this->operationbar->addAction(this->play_stop);
+    this->operationbar->addAction(this->next);
 }
 
 void MainWindow::initLogic()
@@ -47,7 +51,9 @@ void MainWindow::initLogic()
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
     this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
+    this->connect(this->back, SIGNAL(triggered()), this, SLOT(backButtonClicked()));
     this->connect(this->play_stop, SIGNAL(triggered()), this, SLOT(playstopButtonClicked()));
+    this->connect(this->next, SIGNAL(triggered()), this, SLOT(nextButtonClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -81,4 +87,14 @@ void MainWindow::playstopButtonClicked()
         this->viewerwidget->play();
         this->play_stop->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPause));
     }
+}
+
+void MainWindow::backButtonClicked()
+{
+    this->viewerwidget->setCurrentFrame(1);
+}
+
+void MainWindow::nextButtonClicked()
+{
+    this->viewerwidget->setCurrentFrame(-1);
 }

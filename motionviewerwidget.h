@@ -9,6 +9,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 
+class QTimer;
 class MotionGeometryEngine;
 class Motion;
 
@@ -25,9 +26,14 @@ public slots:
     void openMotionFile(const QString& filename);
     void play();
     void stop();
+    void setCurrentFrame(int frame);
+    void updateMotionProperties();
+    void updateCurrentFrame();
+
 
 signals:
     void motionChanged();
+    void currentFrameChanged(int frame);
 
 protected:
     void initializeGL();
@@ -38,13 +44,20 @@ protected:
     void initTextures();
 
 private:
+    const int FRAME_UPDATE_MSEC = 10;
+    int timer_tick_count = 0;
+    int fps = 120;
+
     bool playing;
 
     int current_frame;
+    int max_frame;
     Motion* motion;
     bool motion_loaded;
 
     MotionGeometryEngine *geometries;
+
+    QTimer *timer;
 
     QOpenGLShaderProgram program;
     QOpenGLTexture *texture;
