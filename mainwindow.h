@@ -5,6 +5,7 @@
 
 class QMenu;
 class QAction;
+class QToolBar;
 class MotionViewerWidget;
 
 class MainWindow : public QMainWindow
@@ -29,6 +30,8 @@ private:
     QAction *configureaction;
     QAction *closeaction;
     MotionViewerWidget *viewerwidget;
+    QToolBar *operationbar;
+    QAction *play_stop;
 
     void initUI();
     void initLogic();

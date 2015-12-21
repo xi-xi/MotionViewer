@@ -3,7 +3,10 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QAction>
+#include <QToolBar>
 #include <QFileDialog>
+#include <QApplication>
+#include <QStyle>
 
 #include "motionviewerwidget.h"
 MainWindow::MainWindow(QWidget *parent) :
@@ -16,6 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     this->configureaction = new QAction("Preferences", this);
     this->closeaction = new QAction("Close", this);
     this->closeaction->setShortcuts(QKeySequence::Close);
+    this->operationbar = new QToolBar("Operation", this);
+    this->operationbar->setAllowedAreas(Qt::BottomToolBarArea);
+    this->operationbar->setMovable(false);
+
+    this->play_stop = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaPlay),"Play", this);
     this->initUI();
     this->initLogic();
 
@@ -29,6 +37,8 @@ void MainWindow::initUI()
     this->filemenu->addAction(this->configureaction);
     this->filemenu->addSeparator();
     this->filemenu->addAction(this->closeaction);
+    this->addToolBar(Qt::BottomToolBarArea, this->operationbar);
+    this->operationbar->addAction(this->play_stop);
 }
 
 void MainWindow::initLogic()
