@@ -1,5 +1,6 @@
 #include "motiongeometryengine.h"
 
+#include <QMatrix4x4>
 #include "boxgeometryengine.h"
 
 MotionGeometryEngine::MotionGeometryEngine()
@@ -13,9 +14,9 @@ MotionGeometryEngine::~MotionGeometryEngine()
     qDeleteAll(this->boxes);
 }
 
-void MotionGeometryEngine::drawMotionGeometry(QOpenGLShaderProgram *program)
+void MotionGeometryEngine::drawMotionGeometry(QOpenGLShaderProgram *program, const QMatrix4x4& vp_matrix)
 {
     for(auto box : this->boxes){
-        box->drawBoxGeometry(program);
+        box->drawBoxGeometry(program, vp_matrix);
     }
 }

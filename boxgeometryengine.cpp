@@ -130,8 +130,9 @@ void BoxGeometryEngine::updateVertices()
     this->arraybuf.write(0, vertices, 24 * sizeof(VertexData));
 }
 
-void BoxGeometryEngine::drawBoxGeometry(QOpenGLShaderProgram *program)
+void BoxGeometryEngine::drawBoxGeometry(QOpenGLShaderProgram *program, const QMatrix4x4 &vp_matrix)
 {
+    program->setUniformValue("mvp_matrix", vp_matrix * this->model_matrix);
     this->arraybuf.bind();
     this->indexbuf.bind();
     quintptr offset = 0;
@@ -179,4 +180,12 @@ float BoxGeometryEngine::getHeight()const{
 
 float BoxGeometryEngine::getDepth()const{
     return this->depth;
+}
+
+void BoxGeometryEngine::setModelMatrix(const QMatrix4x4 &matrix){
+    this->model_matrix = matrix;
+}
+
+const QMatrix4x4& BoxGeometryEngine::getModelMatrix() const{
+    return this->model_matrix;
 }

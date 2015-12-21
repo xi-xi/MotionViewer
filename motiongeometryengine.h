@@ -2,6 +2,7 @@
 #define MOTIONGEOMETRYENGINE_H
 #include <QList>
 #include <QBasicTimer>
+class QMatrix4x4;
 class QOpenGLShaderProgram;
 class BoxGeometryEngine;
 
@@ -11,7 +12,7 @@ public:
     MotionGeometryEngine();
     virtual ~MotionGeometryEngine();
 
-    void drawMotionGeometry(QOpenGLShaderProgram* program);
+    void drawMotionGeometry(QOpenGLShaderProgram* program, const QMatrix4x4& vp_matrix);
 
 private:
     QList<BoxGeometryEngine*> boxes;
