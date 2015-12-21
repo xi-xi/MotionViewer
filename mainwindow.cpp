@@ -3,29 +3,40 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QAction>
+#include <QFileDialog>
 
 #include "motionviewerwidget.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-    MotionViewerWidget *w = new MotionViewerWidget(this);
-    this->setCentralWidget(w);
-    this->connect(this, SIGNAL(motionFileChanged(QString)), w, SLOT(openMotionFile(QString)));
+    this->viewerwidget = new MotionViewerWidget(this);
+    this->filemenu = this->menuBar()->addMenu("File");
+    this->openaction = new QAction("Open", this);
+    this->openaction->setShortcuts(QKeySequence::Open);
+    this->configureaction = new QAction("Preferences", this);
+    this->closeaction = new QAction("Close", this);
+    this->closeaction->setShortcuts(QKeySequence::Close);
+    this->initUI();
+    this->initLogic();
 
     this->setWindowTitle("Motion Viewer");
+}
 
-    this->filemenu = new QMenu(this);
-    this->openaction = new QAction("&Open", this);
-    this->closeaction = new QAction("Close", this);
-    filemenu->addAction(this->openaction);
-    filemenu->addSeparator();
-    filemenu->addAction(this->closeaction);
-    this->menuBar()->addMenu(filemenu);
+void MainWindow::initUI()
+{
+    this->setCentralWidget(this->viewerwidget);
+    this->filemenu->addAction(this->openaction);
+    this->filemenu->addAction(this->configureaction);
+    this->filemenu->addSeparator();
+    this->filemenu->addAction(this->closeaction);
+}
 
-    this->helpmenu = new QMenu(this);
-    this->aboutcaction = new QAction(this);
-    this->addAction(this->aboutcaction);
-    this->menuBar()->addMenu(this->helpmenu);
+void MainWindow::initLogic()
+{
+    this->connect(this, SIGNAL(motionFileChanged(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
+    this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
+    this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
+    this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
 }
 
 MainWindow::~MainWindow()
@@ -34,4 +45,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::openMotionFile(const QString &filename){
     emit this->motionFileChanged(filename);
+}
+
+void MainWindow::openFile()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open motion file(.csv)",QString(), "motion (*.csv);;any (*.*)");
+    if(filename.size() != 0)
+    {
+        emit this->motionFileChanged(filename);
+    }
+}
+
+void MainWindow::configure()
+{
 }
