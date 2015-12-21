@@ -24,3 +24,7 @@ bool Pose::contain(const QString &name) const
 {
     return this->joint_positions.contains(name);
 }
+
+QList<QString> Pose::getJointsName()const{
+    return this->joint_positions.keys();
+}

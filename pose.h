@@ -17,6 +17,7 @@ public:
     }
     const QVector3D& at(const QString& name)const;
     bool contain(const QString& name)const;
+    QList<QString> getJointsName()const;
 
 signals:
 
