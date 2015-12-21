@@ -92,10 +92,10 @@ bool Motion::buildPose(const QString &line, Pose *pose){
     return dst;
 }
 
-const Pose& Motion::at(int frame) const{
-    return *this->poses[frame];
+const Pose* Motion::at(int frame) const{
+    return this->poses[frame];
 }
 
-Pose& Motion::at(int frame){
-    return *this->poses[frame];
+Pose *Motion::at(int frame){
+    return this->poses[frame];
 }

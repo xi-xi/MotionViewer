@@ -7,6 +7,7 @@
 
 MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
+    current_frame(0),
     geometries(0),
     texture(0)
 {
@@ -88,7 +89,8 @@ void MotionViewerWidget::paintGL()
     this->program.setUniformValue("texture", 0);
     this->geometries->drawMotionGeometry(
                 &this->program,
-                projection * matrix
+                projection * matrix,
+                this->motion->at(this->current_frame)
                 );
 }
 

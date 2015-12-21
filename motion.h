@@ -17,15 +17,15 @@ public:
     bool open(const QString& filename);
     bool containsProperty(const QString& name)const;
     float getProperty(const QString& name)const;
-    const Pose& operator[](int frame)const{
+    const Pose* operator[](int frame)const{
         return this->at(frame);
     }
-    Pose& operator[](int frame){
+    Pose* operator[](int frame){
         return this->at(frame);
     }
 
-    const Pose& at(int frame)const;
-    Pose& at(int frame);
+    const Pose* at(int frame)const;
+    Pose* at(int frame);
 
 signals:
 

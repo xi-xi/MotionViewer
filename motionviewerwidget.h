@@ -34,6 +34,7 @@ protected:
     void initTextures();
 
 private:
+    int current_frame;
     Motion* motion;
     bool motion_loaded;
 

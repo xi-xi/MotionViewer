@@ -14,7 +14,7 @@ MotionGeometryEngine::~MotionGeometryEngine()
     qDeleteAll(this->boxes);
 }
 
-void MotionGeometryEngine::drawMotionGeometry(QOpenGLShaderProgram *program, const QMatrix4x4& vp_matrix)
+void MotionGeometryEngine::drawMotionGeometry(QOpenGLShaderProgram *program, const QMatrix4x4& vp_matrix, const Pose* pose)
 {
     for(auto box : this->boxes){
         box->drawBoxGeometry(program, vp_matrix);
