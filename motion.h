@@ -15,6 +15,8 @@ public:
     Motion(const QString& filename, QObject* parent = 0);
     ~Motion();
     bool open(const QString& filename);
+    bool containsProperty(const QString& name)const;
+    float getProperty(const QString& name)const;
     const Pose& operator[](int frame)const{
         return this->at(frame);
     }

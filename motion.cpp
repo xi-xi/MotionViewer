@@ -29,6 +29,14 @@ bool Motion::open(const QString &filename)
     return this->build(stream);
 }
 
+bool Motion::containsProperty(const QString &name) const{
+    return this->properties.contains(name);
+}
+
+float Motion::getProperty(const QString &name)const{
+    return this->properties[name];
+}
+
 bool Motion::build(QTextStream &stream)
 {
     QString prop_name = stream.readLine();
