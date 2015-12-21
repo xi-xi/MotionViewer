@@ -56,7 +56,11 @@ bool Motion::buildProperty(const QString &name, const QString &value){
         return false;
     }
     for(int i = 0;i<names.size();++i){
-        this->properties[names[i]] = vals[i].toFloat();
+        bool is_float = true;
+        float float_value = vals[i].toFloat(*is_float);
+        if(is_float){
+            this->properties[names[i]] = float_value;
+        }
     }
     return true;
 }
