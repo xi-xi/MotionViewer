@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     filemenu->addAction(this->closeaction);
     this->menuBar()->addMenu(filemenu);
 
-    this->helpmenu = new QAction(this);
+    this->helpmenu = new QMenu(this);
     this->aboutcaction = new QAction(this);
     this->addAction(this->aboutcaction);
     this->menuBar()->addMenu(this->helpmenu);

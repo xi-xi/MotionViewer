@@ -12,10 +12,10 @@ public:
     explicit Pose(QObject *parent = 0);
     void addJointData(const QString& name, const QVector3D& position);
     void addJointData(const QString &name, float x, float y, float z);
-    const QVector3D& operator[](const QString& name)const{
+    const QVector3D operator[](const QString& name)const{
         return this->at(name);
     }
-    const QVector3D& at(const QString& name)const;
+    const QVector3D at(const QString& name)const;
     bool contain(const QString& name)const;
     QList<QString> getJointsName()const;
 
