@@ -26,6 +26,7 @@ public slots:
     void openMotionFile(const QString& filename);
     void play();
     void stop();
+    void onMotionChanged();
     void setCurrentFrame(int frame);
     void updateMotionProperties();
     void updateCurrentFrame();

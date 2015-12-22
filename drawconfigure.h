@@ -1,6 +1,6 @@
 #ifndef DRAWCONFIGURE_H
 #define DRAWCONFIGURE_H
-
+#include <QObject>
 
 class DrawConfigure : public QObject
 {

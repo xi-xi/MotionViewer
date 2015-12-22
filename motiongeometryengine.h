@@ -3,6 +3,7 @@
 #include <QList>
 #include <QBasicTimer>
 #include "pose.h"
+class Motion;
 class QMatrix4x4;
 class QOpenGLShaderProgram;
 class BoxGeometryEngine;

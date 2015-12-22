@@ -20,7 +20,9 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     this->timer = new QTimer(this);
     this->timer->setInterval(this->FRAME_UPDATE_MSEC);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(updateCurrentFrame()));
+    connect(this, SIGNAL(motionChanged()), this, SLOT(onMotionChanged()));
     connect(this, SIGNAL(motionChanged()), this, SLOT(updateMotionProperties()));
+    connect(this, SIGNAL(currentFrameChanged(int)), this, SLOT(update()));
 }
 
 MotionViewerWidget::~MotionViewerWidget()
@@ -115,6 +117,11 @@ void MotionViewerWidget::updateMotionProperties()
     }
 }
 
+void MotionViewerWidget::onMotionChanged()
+{
+
+}
+
 bool MotionViewerWidget::isPlaying()const{
     return this->playing;
 }
@@ -135,7 +142,6 @@ void MotionViewerWidget::stop()
 
 void MotionViewerWidget::updateCurrentFrame()
 {
-    qDebug() << this->current_frame;
     if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
     }
