@@ -42,9 +42,9 @@ void PlaneGeometryEngine::initGeometry()
 {
     VertexData vertices[] = {
         {QVector3D( 1.0f, 0.0f,  1.0f), QVector2D(0.0f, 0.0f)},
-        {QVector3D( 1.0f, 0.0f, -1.0f), QVector2D(scale, 0.0f)},
-        {QVector3D(-1.0f, 0.0f,  1.0f), QVector2D(0.0f, scale)},
-        {QVector3D( -1.0f, 0.0f,  -1.0f), QVector2D(scale, scale)}
+        {QVector3D( 1.0f, 0.0f, -1.0f), QVector2D(scale / 500.0, 0.0f)},
+        {QVector3D(-1.0f, 0.0f,  1.0f), QVector2D(0.0f, scale / 500.0)},
+        {QVector3D( -1.0f, 0.0f,  -1.0f), QVector2D(scale / 500.0, scale / 500.0)}
     };
     this->arraybuf.bind();
     this->arraybuf.allocate(vertices, 4 * sizeof(VertexData));

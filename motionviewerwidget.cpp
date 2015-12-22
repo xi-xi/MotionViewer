@@ -44,7 +44,7 @@ void MotionViewerWidget::initializeGL()
     glEnable(GL_CULL_FACE);
 
     this->geometries = new MotionGeometryEngine();
-    this->plane = new PlaneGeometryEngine(4.0);
+    this->plane = new PlaneGeometryEngine(4000.0);
 }
 
 void MotionViewerWidget::initShaders()
