@@ -14,7 +14,8 @@ public:
     static DrawConfigure* fromJsonString(const QString& text, QObject* parent = 0);
     static DrawConfigure* defaultConfigure(QObject* parent = 0);
     explicit DrawConfigure(QObject *parent = 0);
-    const QList<QPair<QString, QString>> getConnectJoints;
+    const QList<QPair<QString, QString>>& getConnectJoints();
+    void addConnectJoint(QString a, QString b);
 
 signals:
 
