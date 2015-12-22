@@ -3,6 +3,9 @@
 #include <QTimer>
 #include <QDebug>
 #include <QDateTime>
+#include <QMouseEvent>
+#include <QWheelEvent>
+#include <QtMath>
 
 #include "motion.h"
 #include "motiongeometryengine.h"
@@ -81,10 +84,8 @@ void MotionViewerWidget::initTextures()
 
 void MotionViewerWidget::resizeGL(int w, int h)
 {
-    qreal aspect = qreal(w) / qreal(h ? h : 1);
-    const qreal zNear = 3.0, zFar =10000.0, fov = 45.0;
-    projection.setToIdentity();
-    projection.perspective(fov, aspect, zNear, zFar);
+    this->aspect = qreal(w) / qreal(h ? h : 1);
+    this->updatePerspective();
 }
 
 void MotionViewerWidget::paintGL()
@@ -165,4 +166,37 @@ void MotionViewerWidget::setCurrentFrame(int frame){
     }
     this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
     emit this->currentFrameChanged(this->current_frame);
+}
+
+void MotionViewerWidget::mousePressEvent(QMouseEvent *event){
+    this->mouseclicked_position = event->pos();
+}
+
+void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
+    if(event->buttons() & Qt::LeftButton){
+        QPoint vec = event->pos() - this->mouseclicked_position;
+    }
+}
+
+void MotionViewerWidget::wheelEvent(QWheelEvent *event){
+    if(event->orientation() == Qt::Horizontal){
+        this->updatePerspective();
+    }
+    else{
+        this->fov *= pow(1.1 , event->delta() / 100.0);
+        if(this->fov > FOV_UPPER_LIMIT){
+            this->fov = FOV_UPPER_LIMIT;
+        }
+        else if(this->fov < FOV_DOWN_LIMIT){
+            this->fov = FOV_DOWN_LIMIT;
+        }
+        this->updatePerspective();
+    }
+}
+
+void MotionViewerWidget::updatePerspective()
+{
+    projection.setToIdentity();
+    projection.perspective(this->fov, this->aspect, this->zNear, this->zFar);
+    this->update();
 }

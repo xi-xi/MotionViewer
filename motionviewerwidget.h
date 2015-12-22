@@ -31,7 +31,6 @@ public slots:
     void updateMotionProperties();
     void updateCurrentFrame();
 
-
 signals:
     void motionChanged();
     void currentFrameChanged(int frame);
@@ -43,6 +42,10 @@ protected:
 
     void initShaders();
     void initTextures();
+
+    virtual void mousePressEvent(QMouseEvent* event);
+    virtual void mouseMoveEvent(QMouseEvent* event);
+    virtual void wheelEvent(QWheelEvent* event);
 
 private:
     const int FRAME_UPDATE_MSEC = 10;
@@ -63,6 +66,16 @@ private:
     QOpenGLShaderProgram program;
     QOpenGLTexture *texture;
     QMatrix4x4 projection;
+
+    QPoint mouseclicked_position;
+
+    const qreal zNear = 3.0;
+    const qreal zFar = 10000.0;
+    qreal aspect;
+    qreal fov = 45.0;
+    const qreal FOV_UPPER_LIMIT = 80;
+    const qreal FOV_DOWN_LIMIT = -80;
+    void updatePerspective();
 };
 
 #endif // MOTIONVIEWERWIDGET_H
