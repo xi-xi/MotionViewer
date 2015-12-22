@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     boxgeometryengine.cpp \
     motion.cpp \
     pose.cpp \
-    drawconfigure.cpp
+    drawconfigure.cpp \
+    planegeometryengine.cpp
 
 HEADERS  += mainwindow.h \
     motionviewerwidget.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     boxgeometryengine.h \
     motion.h \
     pose.h \
-    drawconfigure.h
+    drawconfigure.h \
+    planegeometryengine.h
 
 FORMS    +=
 
