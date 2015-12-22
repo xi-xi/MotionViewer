@@ -3,13 +3,16 @@
 #include <QMatrix4x4>
 #include "boxgeometryengine.h"
 #include "motion.h"
+#include "drawconfigure.h"
 
 MotionGeometryEngine::MotionGeometryEngine()
 {
+    this->config = DrawConfigure::defaultConfigure();
 }
 
 MotionGeometryEngine::~MotionGeometryEngine()
 {
+    delete this->config;
     qDeleteAll(this->boxes);
 }
 

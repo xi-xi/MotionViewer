@@ -7,6 +7,7 @@ class Motion;
 class QMatrix4x4;
 class QOpenGLShaderProgram;
 class BoxGeometryEngine;
+class DrawConfigure;
 
 class MotionGeometryEngine
 {
@@ -19,6 +20,7 @@ public:
 private:
     QList<BoxGeometryEngine*> boxes;
     QBasicTimer timer;
+    DrawConfigure* config;
 };
 
 #endif // MOTIONGEOMETRYENGINE_H
