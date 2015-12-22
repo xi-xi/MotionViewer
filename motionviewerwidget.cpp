@@ -84,7 +84,7 @@ void MotionViewerWidget::paintGL()
         return;
     QMatrix4x4 matrix;
     matrix.translate(0.0, -750.0, -2500.0);
-    this->program.setUniformValue("texture", 0);
+    //this->program.setUniformValue("texture", 0);
     this->geometries->drawMotionGeometry(
                 &this->program,
                 projection * matrix,
