@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+CONFIG += c++11
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MotionViewer
@@ -13,8 +15,24 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    motionviewerwidget.cpp \
+    motiongeometryengine.cpp \
+    boxgeometryengine.cpp \
+    motion.cpp \
+    pose.cpp \
+    drawconfigure.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    motionviewerwidget.h \
+    motiongeometryengine.h \
+    boxgeometryengine.h \
+    motion.h \
+    pose.h \
+    drawconfigure.h
 
 FORMS    +=
+
+RESOURCES += \
+    shaders.qrc \
+    textures.qrc
