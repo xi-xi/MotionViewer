@@ -10,6 +10,7 @@
 
 class QTimer;
 class MotionGeometryEngine;
+class PlaneGeometryEngine;
 class Motion;
 
 class MotionViewerWidget : public QOpenGLWidget, protected QOpenGLFunctions
@@ -55,6 +56,7 @@ private:
     bool motion_loaded;
 
     MotionGeometryEngine *geometries;
+    PlaneGeometryEngine *plane;
 
     QTimer *timer;
 

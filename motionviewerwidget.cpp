@@ -6,6 +6,7 @@
 
 #include "motion.h"
 #include "motiongeometryengine.h"
+#include "planegeometryengine.h"
 
 MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
@@ -29,6 +30,7 @@ MotionViewerWidget::~MotionViewerWidget()
     this->timer->stop();
     this->makeCurrent();
     delete this->geometries;
+    delete this->plane;
     this->doneCurrent();
 }
 
@@ -42,6 +44,7 @@ void MotionViewerWidget::initializeGL()
     glEnable(GL_CULL_FACE);
 
     this->geometries = new MotionGeometryEngine();
+    this->plane = new PlaneGeometryEngine(4.0);
 }
 
 void MotionViewerWidget::initShaders()
@@ -80,10 +83,11 @@ void MotionViewerWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    if(!this->motion_loaded)
-        return;
     QMatrix4x4 matrix;
     matrix.translate(0.0, -750.0, -2500.0);
+    this->plane->draw(&this->program, projection * matrix);
+    if(!this->motion_loaded)
+        return;
     //this->program.setUniformValue("texture", 0);
     this->geometries->drawMotionGeometry(
                 &this->program,

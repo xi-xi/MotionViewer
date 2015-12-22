@@ -12,9 +12,9 @@ struct VertexData
 };
 
 PlaneGeometryEngine::PlaneGeometryEngine(float scale):
-    texture(0),
+    scale(scale),
     indexbuf(QOpenGLBuffer::IndexBuffer),
-    scale(scale)
+    texture(0)
 {
     initializeOpenGLFunctions();
     this->arraybuf.create();
@@ -32,14 +32,44 @@ PlaneGeometryEngine::~PlaneGeometryEngine()
 
 void PlaneGeometryEngine::initTexture()
 {
+    this->texture = new QOpenGLTexture(QImage(":/tile.png").mirrored());
+    this->texture->setMinificationFilter(QOpenGLTexture::Nearest);
+    this->texture->setMagnificationFilter(QOpenGLTexture::Linear);
+    this->texture->setWrapMode(QOpenGLTexture::Repeat);
 }
 
 void PlaneGeometryEngine::initGeometry()
 {
     VertexData vertices[] = {
-        {QVector3D(-1.0f, 0.0f,  1.0f), QVector2D(0.0f, 0.0f)},
-        {QVector3D( 1.0f, 0.0f,  1.0f), QVector2D(0.33f, 0.0f)},
-        {QVector3D(-1.0f,  0.0f,  1.0f), QVector2D(0.0f, 0.5f)},
-        {QVector3D( 1.0f,  0.0f,  1.0f), QVector2D(0.33f, 0.5f)}
+        {QVector3D( 1.0f, 0.0f,  1.0f), QVector2D(0.0f, 0.0f)},
+        {QVector3D( 1.0f, 0.0f, -1.0f), QVector2D(scale, 0.0f)},
+        {QVector3D(-1.0f, 0.0f,  1.0f), QVector2D(0.0f, scale)},
+        {QVector3D( -1.0f, 0.0f,  -1.0f), QVector2D(scale, scale)}
     };
+    this->arraybuf.bind();
+    this->arraybuf.allocate(vertices, 4 * sizeof(VertexData));
+    GLushort indices[] = {
+        0, 1, 2, 3
+    };
+    this->indexbuf.bind();
+    this->indexbuf.allocate(indices, 4 * sizeof(GLushort));
+}
+
+void PlaneGeometryEngine::draw(QOpenGLShaderProgram *program, const QMatrix4x4 &vp_matrix)
+{
+    this->texture->bind();
+    QMatrix4x4 scale;
+    scale.scale(this->scale * 0.5, 1.0, this->scale * 0.5);
+    program->setUniformValue("mvp_matrix", vp_matrix * scale);
+    this->arraybuf.bind();
+    this->indexbuf.bind();
+    quintptr offset = 0;
+    int vertexlocation = program->attributeLocation("a_position");
+    program->enableAttributeArray(vertexlocation);
+    program->setAttributeBuffer(vertexlocation, GL_FLOAT, offset, 3,sizeof(VertexData));
+    offset += sizeof(QVector3D);
+    int texcoordlocation = program->attributeLocation("a_texcoord");
+    program->enableAttributeArray(texcoordlocation);
+    program->setAttributeBuffer(texcoordlocation, GL_FLOAT, offset, 2, sizeof(VertexData));
+    glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, 0);
 }
