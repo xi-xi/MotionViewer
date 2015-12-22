@@ -23,6 +23,7 @@ private:
     DrawConfigure* config;
 
     void initBoxes();
+    QMatrix4x4 calcModelMatrix(const QVector3D& first, const QVector3D& second);
 };
 
 #endif // MOTIONGEOMETRYENGINE_H

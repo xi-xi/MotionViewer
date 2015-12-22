@@ -17,13 +17,20 @@ DrawConfigure* DrawConfigure::fromJsonFile(const QString &filename,QObject* pare
 DrawConfigure* DrawConfigure::fromJsonString(const QString &text,QObject* parent){
     QJsonDocument doc = QJsonDocument::fromJson(text.toUtf8());
     QJsonObject obj = doc.object();
-    if(obj.contains("joints")){
-        QJsonArray joints = obj["joints"].toArray();
+    if(!obj.empty()){
         auto conf = new DrawConfigure(parent);
-        for(int i = 0;i<joints.size();++i){
-            QJsonArray vals = joints[i].toArray();
-            conf->addConnectJoint(vals[0].toString(), vals[1].toString());
+        if(obj.contains("joints")){
+            QJsonArray joints = obj["joints"].toArray();
+            for(int i = 0;i<joints.size();++i){
+                QJsonArray vals = joints[i].toArray();
+                conf->addConnectJoint(vals[0].toString(), vals[1].toString());
+            }
         }
+        if(obj.contains("box_size")){
+            QJsonArray vector = obj["box_size"].toArray();
+            conf->box_size = QVector3D(vector[0].toDouble(), vector[1].toDouble(), vector[2].toDouble());
+        }
+        return conf;
     }
     return new DrawConfigure(parent);
 }
@@ -78,6 +85,7 @@ DrawConfigure* DrawConfigure::defaultConfigure(QObject *parent){
     conf->addConnectJoint("L.Heel","L.Foot");
     conf->addConnectJoint("L.Heel","L.Toe");
     conf->addConnectJoint("L.Toe","L.Foot");
+    conf->box_size = QVector3D(10, 10, 10);
     return conf;
 }
 
