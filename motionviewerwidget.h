@@ -7,10 +7,10 @@
 #include <QQuaternion>
 #include <QVector2D>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLTexture>
 
 class QTimer;
 class MotionGeometryEngine;
+class PlaneGeometryEngine;
 class Motion;
 
 class MotionViewerWidget : public QOpenGLWidget, protected QOpenGLFunctions
@@ -42,7 +42,6 @@ protected:
     void paintGL();
 
     void initShaders();
-    void initTextures();
 
 private:
     const int FRAME_UPDATE_MSEC = 10;
@@ -57,11 +56,11 @@ private:
     bool motion_loaded;
 
     MotionGeometryEngine *geometries;
+    PlaneGeometryEngine *plane;
 
     QTimer *timer;
 
     QOpenGLShaderProgram program;
-    QOpenGLTexture *texture;
     QMatrix4x4 projection;
 };
 

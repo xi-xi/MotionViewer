@@ -4,20 +4,30 @@
 #include <QList>
 #include <QPair>
 #include <QtMath>
+#include <QOpenGLTexture>
 #include "boxgeometryengine.h"
 #include "motion.h"
 #include "drawconfigure.h"
 
 MotionGeometryEngine::MotionGeometryEngine()
 {
+    this->initTexture();
     this->config = DrawConfigure::defaultConfigure();
     this->initBoxes();
 }
 
 MotionGeometryEngine::~MotionGeometryEngine()
 {
+    delete this->texture;
     delete this->config;
     qDeleteAll(this->boxes);
+}
+
+void MotionGeometryEngine::initTexture(){
+    this->texture = new QOpenGLTexture(QImage(":/blackboard.png").mirrored());
+    this->texture->setMinificationFilter(QOpenGLTexture::Nearest);
+    this->texture->setMagnificationFilter(QOpenGLTexture::Linear);
+    this->texture->setWrapMode(QOpenGLTexture::Repeat);
 }
 
 void MotionGeometryEngine::initBoxes()
@@ -29,6 +39,7 @@ void MotionGeometryEngine::initBoxes()
 
 void MotionGeometryEngine::drawMotionGeometry(QOpenGLShaderProgram *program, const QMatrix4x4& vp_matrix, const Pose* pose)
 {
+    this->texture->bind();
     for(int i = 0; i < this->config->getConnectJoints().size() ; ++i){
         if(!pose->contain(this->config->getConnectJoints()[i].first)
                 || !pose->contain(this->config->getConnectJoints()[i].second)){
