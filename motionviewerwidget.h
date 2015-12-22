@@ -7,7 +7,6 @@
 #include <QQuaternion>
 #include <QVector2D>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLTexture>
 
 class QTimer;
 class MotionGeometryEngine;
@@ -42,7 +41,6 @@ protected:
     void paintGL();
 
     void initShaders();
-    void initTextures();
 
 private:
     const int FRAME_UPDATE_MSEC = 10;
@@ -61,7 +59,6 @@ private:
     QTimer *timer;
 
     QOpenGLShaderProgram program;
-    QOpenGLTexture *texture;
     QMatrix4x4 projection;
 };
 

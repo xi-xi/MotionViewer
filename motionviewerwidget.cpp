@@ -11,8 +11,7 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
     playing(false),
     current_frame(1),
-    geometries(0),
-    texture(0)
+    geometries(0)
 {
     this->motion = new Motion(this);
     this->motion_loaded = false;
@@ -29,7 +28,6 @@ MotionViewerWidget::~MotionViewerWidget()
 {
     this->timer->stop();
     this->makeCurrent();
-    delete this->texture;
     delete this->geometries;
     this->doneCurrent();
 }
@@ -39,7 +37,6 @@ void MotionViewerWidget::initializeGL()
     initializeOpenGLFunctions();
     glClearColor(0, 0, 0, 1);
     this->initShaders();
-    this->initTextures();
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -71,14 +68,6 @@ void MotionViewerWidget::initShaders()
     }
 }
 
-void MotionViewerWidget::initTextures()
-{
-    this->texture = new QOpenGLTexture(QImage(":/blackboard.png").mirrored());
-    this->texture->setMinificationFilter(QOpenGLTexture::Nearest);
-    this->texture->setMagnificationFilter(QOpenGLTexture::Linear);
-    this->texture->setWrapMode(QOpenGLTexture::Repeat);
-}
-
 void MotionViewerWidget::resizeGL(int w, int h)
 {
     qreal aspect = qreal(w) / qreal(h ? h : 1);
@@ -93,7 +82,6 @@ void MotionViewerWidget::paintGL()
     glClearColor(1.0, 1.0, 1.0, 1.0);
     if(!this->motion_loaded)
         return;
-    this->texture->bind();
     QMatrix4x4 matrix;
     matrix.translate(0.0, -750.0, -2500.0);
     this->program.setUniformValue("texture", 0);
