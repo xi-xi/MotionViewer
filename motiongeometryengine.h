@@ -21,6 +21,8 @@ private:
     QList<BoxGeometryEngine*> boxes;
     QBasicTimer timer;
     DrawConfigure* config;
+
+    void initBoxes();
 };
 
 #endif // MOTIONGEOMETRYENGINE_H
