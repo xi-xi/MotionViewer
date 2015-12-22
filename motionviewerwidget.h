@@ -76,6 +76,9 @@ private:
     const qreal FOV_UPPER_LIMIT = 80;
     const qreal FOV_DOWN_LIMIT = -80;
     void updatePerspective();
+
+    QVector3D camera_translate = QVector3D(0, 750, 2500);
+    qreal camera_angle = .0;
 };
 
 #endif // MOTIONVIEWERWIDGET_H

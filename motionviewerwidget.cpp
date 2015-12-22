@@ -96,7 +96,8 @@ void MotionViewerWidget::paintGL()
         return;
     this->texture->bind();
     QMatrix4x4 matrix;
-    matrix.translate(0.0, -750.0, -2500.0);
+    matrix.translate(-1.0 * this->camera_translate);
+    matrix.rotate(-1.0 * this->camera_angle, QVector3D(.0, 1.0, .0));
     this->program.setUniformValue("texture", 0);
     this->geometries->drawMotionGeometry(
                 &this->program,
@@ -179,8 +180,10 @@ void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
 }
 
 void MotionViewerWidget::wheelEvent(QWheelEvent *event){
-    if(event->orientation() == Qt::Horizontal){
-        this->updatePerspective();
+    if(event->orientation() == Qt::Horizontal
+            || (event->orientation() == Qt::Vertical && event->modifiers() & Qt::ShiftModifier)){
+        this->camera_angle += event->delta() / 100.0;
+        this->update();
     }
     else{
         this->fov *= pow(1.1 , event->delta() / 100.0);
