@@ -3,6 +3,9 @@
 #include <QTimer>
 #include <QDebug>
 #include <QDateTime>
+#include <QMouseEvent>
+#include <QWheelEvent>
+#include <QtMath>
 
 #include "motion.h"
 #include "motiongeometryengine.h"
@@ -73,10 +76,8 @@ void MotionViewerWidget::initShaders()
 
 void MotionViewerWidget::resizeGL(int w, int h)
 {
-    qreal aspect = qreal(w) / qreal(h ? h : 1);
-    const qreal zNear = 3.0, zFar =10000.0, fov = 45.0;
-    projection.setToIdentity();
-    projection.perspective(fov, aspect, zNear, zFar);
+    this->aspect = qreal(w) / qreal(h ? h : 1);
+    this->updatePerspective();
 }
 
 void MotionViewerWidget::paintGL()
@@ -84,11 +85,12 @@ void MotionViewerWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 1.0, 1.0, 1.0);
     QMatrix4x4 matrix;
-    matrix.translate(0.0, -750.0, -2500.0);
+    matrix.translate(-1.0 * this->camera_translate);
+    matrix.rotate(-1.0 * this->camera_angle, QVector3D(.0, 1.0, .0));
+    this->program.setUniformValue("texture", 0);
     this->plane->draw(&this->program, projection * matrix);
     if(!this->motion_loaded)
         return;
-    //this->program.setUniformValue("texture", 0);
     this->geometries->drawMotionGeometry(
                 &this->program,
                 projection * matrix,
@@ -157,4 +159,39 @@ void MotionViewerWidget::setCurrentFrame(int frame){
     }
     this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
     emit this->currentFrameChanged(this->current_frame);
+}
+
+void MotionViewerWidget::mousePressEvent(QMouseEvent *event){
+    this->mouseclicked_position = event->pos();
+}
+
+void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
+    if(event->buttons() & Qt::LeftButton){
+        QPoint vec = event->pos() - this->mouseclicked_position;
+    }
+}
+
+void MotionViewerWidget::wheelEvent(QWheelEvent *event){
+    if(event->orientation() == Qt::Horizontal
+            || (event->orientation() == Qt::Vertical && event->modifiers() & Qt::ShiftModifier)){
+        this->camera_angle += event->delta() / 100.0;
+        this->update();
+    }
+    else{
+        this->fov *= pow(1.1 , event->delta() / 100.0);
+        if(this->fov > FOV_UPPER_LIMIT){
+            this->fov = FOV_UPPER_LIMIT;
+        }
+        else if(this->fov < FOV_DOWN_LIMIT){
+            this->fov = FOV_DOWN_LIMIT;
+        }
+        this->updatePerspective();
+    }
+}
+
+void MotionViewerWidget::updatePerspective()
+{
+    projection.setToIdentity();
+    projection.perspective(this->fov, this->aspect, this->zNear, this->zFar);
+    this->update();
 }
