@@ -82,7 +82,7 @@ void MotionViewerWidget::initTextures()
 void MotionViewerWidget::resizeGL(int w, int h)
 {
     qreal aspect = qreal(w) / qreal(h ? h : 1);
-    const qreal zNear = 3.0, zFar =7.0, fov = 45.0;
+    const qreal zNear = 3.0, zFar =10000.0, fov = 45.0;
     projection.setToIdentity();
     projection.perspective(fov, aspect, zNear, zFar);
 }
@@ -95,7 +95,7 @@ void MotionViewerWidget::paintGL()
         return;
     this->texture->bind();
     QMatrix4x4 matrix;
-    matrix.translate(0.0, 0.0, -5.0);
+    matrix.translate(0.0, -750.0, -2500.0);
     this->program.setUniformValue("texture", 0);
     this->geometries->drawMotionGeometry(
                 &this->program,

@@ -85,7 +85,7 @@ DrawConfigure* DrawConfigure::defaultConfigure(QObject *parent){
     conf->addConnectJoint("L.Heel","L.Foot");
     conf->addConnectJoint("L.Heel","L.Toe");
     conf->addConnectJoint("L.Toe","L.Foot");
-    conf->box_size = QVector3D(1, 1, 1);
+    conf->box_size = QVector3D(10, 10, 10);
     return conf;
 }
 
