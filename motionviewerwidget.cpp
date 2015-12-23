@@ -125,6 +125,7 @@ void MotionViewerWidget::play()
     this->timer->start();
     this->playing = true;
     this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    emit this->playStateChanged(this->isPlaying());
 }
 
 void MotionViewerWidget::stop()
@@ -132,6 +133,7 @@ void MotionViewerWidget::stop()
     this->timer->stop();
     this->playing = false;
     this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    emit this->playStateChanged(this->isPlaying());
 }
 
 void MotionViewerWidget::updateCurrentFrame()

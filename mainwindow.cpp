@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QApplication>
 #include <QStyle>
+#include <QLabel>
 
 #include "motionviewerwidget.h"
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,12 +21,13 @@ MainWindow::MainWindow(QWidget *parent) :
     this->closeaction = new QAction("Close", this);
     this->closeaction->setShortcuts(QKeySequence::Close);
     this->operationbar = new QToolBar("Operation", this);
-    this->operationbar->setAllowedAreas(Qt::BottomToolBarArea);
-    this->operationbar->setMovable(false);
+    this->operationbar->setAllowedAreas(Qt::BottomToolBarArea | Qt::TopToolBarArea);
 
     this->back = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipBackward), "Back", this);
     this->play_stop = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaPlay),"Play", this);
     this->next = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipForward), "Next", this);
+
+    this->filename = new QLabel("Not Opened",this);
     this->initUI();
     this->initLogic();
 
@@ -43,10 +45,12 @@ void MainWindow::initUI()
     this->operationbar->addAction(this->back);
     this->operationbar->addAction(this->play_stop);
     this->operationbar->addAction(this->next);
+    this->operationbar->addWidget(this->filename);
 }
 
 void MainWindow::initLogic()
 {
+    this->connect(this, SIGNAL(motionFileChanged(QString)), this, SLOT(onMotionFileChanged(QString)));
     this->connect(this, SIGNAL(motionFileChanged(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
@@ -54,6 +58,7 @@ void MainWindow::initLogic()
     this->connect(this->back, SIGNAL(triggered()), this, SLOT(backButtonClicked()));
     this->connect(this->play_stop, SIGNAL(triggered()), this, SLOT(playstopButtonClicked()));
     this->connect(this->next, SIGNAL(triggered()), this, SLOT(nextButtonClicked()));
+    this->connect(this->viewerwidget, SIGNAL(playStateChanged(bool)), this, SLOT(setPlayStopButtonState(bool)));
 }
 
 MainWindow::~MainWindow()
@@ -81,11 +86,18 @@ void MainWindow::playstopButtonClicked()
 {
     if(this->viewerwidget->isPlaying()){
         this->viewerwidget->stop();
-        this->play_stop->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPlay));
     }
     else{
         this->viewerwidget->play();
+    }
+}
+
+void MainWindow::setPlayStopButtonState(bool isplaying){
+    if(isplaying){
         this->play_stop->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPause));
+    }
+    else{
+        this->play_stop->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPlay));
     }
 }
 
@@ -97,4 +109,8 @@ void MainWindow::backButtonClicked()
 void MainWindow::nextButtonClicked()
 {
     this->viewerwidget->setCurrentFrame(-1);
+}
+
+void MainWindow::onMotionFileChanged(const QString &filename){
+    this->filename->setText(filename);
 }
