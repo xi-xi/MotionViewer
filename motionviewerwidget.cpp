@@ -144,6 +144,7 @@ void MotionViewerWidget::updateCurrentFrame()
         this->current_frame = this->timer_tick_count * this->FRAME_UPDATE_MSEC / 1000.0 * this->fps;
         if(this->current_frame >= this->max_frame){
             this->current_frame = this->max_frame;
+            this->stop();
         }
         emit this->currentFrameChanged(this->current_frame);
     }
@@ -175,7 +176,8 @@ void MotionViewerWidget::wheelEvent(QWheelEvent *event){
     if(event->orientation() == Qt::Horizontal
             || (event->orientation() == Qt::Vertical && event->modifiers() & Qt::ShiftModifier)){
         this->camera_angle += event->delta() / 100.0;
-        this->update();
+        if(!this->isPlaying())
+            this->update();
     }
     else{
         this->fov *= pow(1.1 , event->delta() / 100.0);
@@ -193,5 +195,6 @@ void MotionViewerWidget::updatePerspective()
 {
     projection.setToIdentity();
     projection.perspective(this->fov, this->aspect, this->zNear, this->zFar);
-    this->update();
+    if(!this->isPlaying())
+        this->update();
 }
