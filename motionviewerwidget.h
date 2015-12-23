@@ -7,10 +7,10 @@
 #include <QQuaternion>
 #include <QVector2D>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLTexture>
 
 class QTimer;
 class MotionGeometryEngine;
+class PlaneGeometryEngine;
 class Motion;
 
 class MotionViewerWidget : public QOpenGLWidget, protected QOpenGLFunctions
@@ -31,7 +31,6 @@ public slots:
     void updateMotionProperties();
     void updateCurrentFrame();
 
-
 signals:
     void motionChanged();
     void currentFrameChanged(int frame);
@@ -42,7 +41,10 @@ protected:
     void paintGL();
 
     void initShaders();
-    void initTextures();
+
+    virtual void mousePressEvent(QMouseEvent* event);
+    virtual void mouseMoveEvent(QMouseEvent* event);
+    virtual void wheelEvent(QWheelEvent* event);
 
 private:
     const int FRAME_UPDATE_MSEC = 10;
@@ -57,12 +59,25 @@ private:
     bool motion_loaded;
 
     MotionGeometryEngine *geometries;
+    PlaneGeometryEngine *plane;
 
     QTimer *timer;
 
     QOpenGLShaderProgram program;
-    QOpenGLTexture *texture;
     QMatrix4x4 projection;
+
+    QPoint mouseclicked_position;
+
+    const qreal zNear = 3.0;
+    const qreal zFar = 10000.0;
+    qreal aspect;
+    qreal fov = 45.0;
+    const qreal FOV_UPPER_LIMIT = 80;
+    const qreal FOV_DOWN_LIMIT = -80;
+    void updatePerspective();
+
+    QVector3D camera_translate = QVector3D(0, 750, 2500);
+    qreal camera_angle = .0;
 };
 
 #endif // MOTIONVIEWERWIDGET_H

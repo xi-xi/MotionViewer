@@ -6,6 +6,7 @@
 class Motion;
 class QMatrix4x4;
 class QOpenGLShaderProgram;
+class QOpenGLTexture;
 class BoxGeometryEngine;
 class DrawConfigure;
 
@@ -21,7 +22,9 @@ private:
     QList<BoxGeometryEngine*> boxes;
     QBasicTimer timer;
     DrawConfigure* config;
+    QOpenGLTexture* texture;
 
+    void initTexture();
     void initBoxes();
     QMatrix4x4 calcModelMatrix(const QVector3D& first, const QVector3D& second);
 };
