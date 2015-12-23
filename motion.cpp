@@ -46,7 +46,7 @@ bool Motion::build(QTextStream &stream)
     }
     this->markers = stream.readLine().split(",");
     bool dst = true;
-    while(!stream.atEnd() && dst){
+    while(!stream.atEnd()){
         QString line = stream.readLine();
         Pose* pose = new Pose();
         if(!this->buildPose(line, pose)){
