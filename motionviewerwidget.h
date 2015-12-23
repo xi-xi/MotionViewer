@@ -47,7 +47,7 @@ protected:
     virtual void wheelEvent(QWheelEvent* event);
 
 private:
-    const int FRAME_UPDATE_MSEC = 10;
+    const int FRAME_UPDATE_MSEC = 16;
     int timer_tick_count = 0;
     int fps = 120;
 
