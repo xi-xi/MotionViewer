@@ -7,6 +7,7 @@
 #include <QQuaternion>
 #include <QVector2D>
 #include <QOpenGLShaderProgram>
+#include <chrono>
 
 class QTimer;
 class MotionGeometryEngine;
@@ -48,8 +49,10 @@ protected:
     virtual void wheelEvent(QWheelEvent* event);
 
 private:
-    const int FRAME_UPDATE_MSEC = 33;
-    int timer_tick_count = 0;
+    typedef std::chrono::system_clock Time;
+    Time::time_point start_time;
+    const int FRAME_UPDATE_MSEC = 0;
+    int start_frame = 0;
     int fps = 120;
 
     bool playing;

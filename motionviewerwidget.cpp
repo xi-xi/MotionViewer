@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include <QtMath>
+#include <chrono>
 
 #include "motion.h"
 #include "motiongeometryengine.h"
@@ -124,7 +125,7 @@ void MotionViewerWidget::play()
 {
     this->timer->start();
     this->playing = true;
-    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    this->start_time = Time::now();
     emit this->playStateChanged(this->isPlaying());
 }
 
@@ -132,18 +133,18 @@ void MotionViewerWidget::stop()
 {
     this->timer->stop();
     this->playing = false;
-    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
     emit this->playStateChanged(this->isPlaying());
 }
 
 void MotionViewerWidget::updateCurrentFrame()
 {
+    namespace sc = std::chrono;
     if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
     }
     else{
-        this->timer_tick_count++;
-        this->current_frame = this->timer_tick_count * this->FRAME_UPDATE_MSEC / 1000.0 * this->fps;
+        auto now = sc::system_clock::now();
+        this->current_frame = this->start_frame + sc::duration_cast<std::chrono::milliseconds>(now - this->start_time).count() / 1000.0 * this->fps;
         if(this->current_frame >= this->max_frame){
             this->current_frame = this->max_frame;
             this->stop();
@@ -160,7 +161,8 @@ void MotionViewerWidget::setCurrentFrame(int frame){
     else if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
     }
-    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    this->start_frame = frame;
+    this->start_time = std::chrono::system_clock::now();
     emit this->currentFrameChanged(this->current_frame);
 }
 
