@@ -8,8 +8,13 @@
 #include <QApplication>
 #include <QStyle>
 #include <QLabel>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QMimeData>
+#include <QUrl>
 
 #include "motionviewerwidget.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -32,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->initLogic();
 
     this->setWindowTitle("Motion Viewer");
+    this->setAcceptDrops(true);
 }
 
 void MainWindow::initUI()
@@ -113,4 +119,28 @@ void MainWindow::nextButtonClicked()
 
 void MainWindow::onMotionFileChanged(const QString &filename){
     this->filename->setText(filename);
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if(event->mimeData()->hasUrls()){
+        event->acceptProposedAction();
+    }
+}
+
+void MainWindow::dropEvent(QDropEvent *event){
+    if(event->mimeData()->hasUrls()){
+        QStringList pathlist;
+        QList<QUrl> urlList = event->mimeData()->urls();
+        for(int i = 0;i<urlList.size();++i){
+            pathlist.append(urlList.at(i).toLocalFile());
+        }
+        this->openMotionFile(pathlist.at(0));
+        for(int i = 1;i<pathlist.size();++i){
+            MainWindow* w = new MainWindow();
+            w->show();
+            w->openMotionFile(pathlist.at(i));
+//            w->activateWindow();
+        }
+    }
 }
