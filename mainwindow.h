@@ -6,6 +6,7 @@
 class QMenu;
 class QAction;
 class QToolBar;
+class QLabel;
 class MotionViewerWidget;
 
 class MainWindow : public QMainWindow
@@ -15,6 +16,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    virtual void dragEnterEvent(QDragEnterEvent* event);
+    virtual void dropEvent(QDropEvent* event);
+    virtual void keyPressEvent(QKeyEvent* event);
 
 public slots:
     void openFile();
@@ -23,11 +27,14 @@ public slots:
     void playstopButtonClicked();
     void backButtonClicked();
     void nextButtonClicked();
+    void setPlayStopButtonState(bool isplaying);
+    void onMotionFileChanged(const QString& filename);
 
 signals:
     void motionFileChanged(const QString& filename);
 
 private:
+    QLabel *filename;
     QMenu *filemenu;
     QAction *openaction;
     QAction *configureaction;

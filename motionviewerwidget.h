@@ -34,6 +34,7 @@ public slots:
 signals:
     void motionChanged();
     void currentFrameChanged(int frame);
+    void playStateChanged(bool is_playing);
 
 protected:
     void initializeGL();
@@ -47,7 +48,7 @@ protected:
     virtual void wheelEvent(QWheelEvent* event);
 
 private:
-    const int FRAME_UPDATE_MSEC = 16;
+    const int FRAME_UPDATE_MSEC = 33;
     int timer_tick_count = 0;
     int fps = 120;
 
