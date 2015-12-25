@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>texture.png</file>
         <file>blackboard.png</file>
-        <file>grayboard.png</file>
         <file>tile.png</file>
     </qresource>
 </RCC>

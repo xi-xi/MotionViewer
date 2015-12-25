@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include <QtMath>
+#include <chrono>
 
 #include "motion.h"
 #include "motiongeometryengine.h"
@@ -124,26 +125,30 @@ void MotionViewerWidget::play()
 {
     this->timer->start();
     this->playing = true;
-    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    this->start_time = Time::now();
+    emit this->playStateChanged(this->isPlaying());
 }
 
 void MotionViewerWidget::stop()
 {
     this->timer->stop();
     this->playing = false;
-    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    this->start_frame = this->current_frame;
+    emit this->playStateChanged(this->isPlaying());
 }
 
 void MotionViewerWidget::updateCurrentFrame()
 {
+    namespace sc = std::chrono;
     if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
     }
     else{
-        this->timer_tick_count++;
-        this->current_frame = this->timer_tick_count * this->FRAME_UPDATE_MSEC / 1000.0 * this->fps;
+        auto now = sc::system_clock::now();
+        this->current_frame = this->start_frame + sc::duration_cast<std::chrono::milliseconds>(now - this->start_time).count() / 1000.0 * this->fps;
         if(this->current_frame >= this->max_frame){
             this->current_frame = this->max_frame;
+            this->stop();
         }
         emit this->currentFrameChanged(this->current_frame);
     }
@@ -157,7 +162,8 @@ void MotionViewerWidget::setCurrentFrame(int frame){
     else if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
     }
-    this->timer_tick_count = this->current_frame / this->fps * 1000.0 / this->FRAME_UPDATE_MSEC;
+    this->start_frame = frame;
+    this->start_time = std::chrono::system_clock::now();
     emit this->currentFrameChanged(this->current_frame);
 }
 
@@ -168,6 +174,10 @@ void MotionViewerWidget::mousePressEvent(QMouseEvent *event){
 void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
     if(event->buttons() & Qt::LeftButton){
         QPoint vec = event->pos() - this->mouseclicked_position;
+        this->camera_translate.setX(this->camera_translate.x() + vec.x());
+        this->camera_translate.setY(this->camera_translate.y() + vec.y());
+        this->updatePerspective();
+        this->mouseclicked_position = event->pos();
     }
 }
 
@@ -175,7 +185,8 @@ void MotionViewerWidget::wheelEvent(QWheelEvent *event){
     if(event->orientation() == Qt::Horizontal
             || (event->orientation() == Qt::Vertical && event->modifiers() & Qt::ShiftModifier)){
         this->camera_angle += event->delta() / 100.0;
-        this->update();
+        if(!this->isPlaying())
+            this->update();
     }
     else{
         this->fov *= pow(1.1 , event->delta() / 100.0);
@@ -193,5 +204,6 @@ void MotionViewerWidget::updatePerspective()
 {
     projection.setToIdentity();
     projection.perspective(this->fov, this->aspect, this->zNear, this->zFar);
-    this->update();
+    if(!this->isPlaying())
+        this->update();
 }
