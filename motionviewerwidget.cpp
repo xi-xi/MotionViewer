@@ -133,6 +133,7 @@ void MotionViewerWidget::stop()
 {
     this->timer->stop();
     this->playing = false;
+    this->start_frame = this->current_frame;
     emit this->playStateChanged(this->isPlaying());
 }
 
