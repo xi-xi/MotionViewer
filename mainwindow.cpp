@@ -139,8 +139,9 @@ void MainWindow::dropEvent(QDropEvent *event){
         for(int i = 1;i<pathlist.size();++i){
             MainWindow* w = new MainWindow();
             w->show();
+            w->resize(this->size());
             w->openMotionFile(pathlist.at(i));
-//            w->activateWindow();
         }
+        event->acceptProposedAction();
     }
 }
