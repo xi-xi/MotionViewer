@@ -12,6 +12,7 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QUrl>
+#include <QKeyEvent>
 
 #include "motionviewerwidget.h"
 
@@ -143,5 +144,12 @@ void MainWindow::dropEvent(QDropEvent *event){
             w->openMotionFile(pathlist.at(i));
         }
         event->acceptProposedAction();
+    }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Space){
+        this->playstopButtonClicked();
     }
 }
