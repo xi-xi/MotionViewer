@@ -52,7 +52,7 @@ private:
     typedef std::chrono::system_clock Time;
     Time::time_point start_time;
     const int FRAME_UPDATE_MSEC = 0;
-    int start_frame = 0;
+    int start_frame = 1;
     int fps = 120;
 
     bool playing;
