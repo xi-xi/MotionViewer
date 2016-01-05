@@ -15,8 +15,6 @@ public:
     Motion(const QString& filename, QObject* parent = 0);
     ~Motion();
     bool open(const QString& filename);
-    bool containsProperty(const QString& name)const;
-    float getProperty(const QString& name)const;
     const Pose* operator[](int frame)const{
         return this->at(frame);
     }
@@ -26,6 +24,12 @@ public:
 
     const Pose* at(int frame)const;
     Pose* at(int frame);
+    float fps()const;
+    void setFps(float fps);
+    int maxFlame()const;
+    void setMaxFlame(int max_frame);
+    const QStringList& markers()const;
+    void setMarkers(const QStringList& markers);
 
 signals:
 
@@ -38,7 +42,8 @@ private:
 
     QMap<int, Pose*> poses;
     QStringList markers;
-    QMap<QString, float> properties;
+    float fps;
+    int maxFrame;
 };
 
 #endif // MOTION_H
