@@ -9,6 +9,7 @@
 #include <chrono>
 
 #include "motion.h"
+#include "motionbuilder.h"
 #include "motiongeometryengine.h"
 #include "planegeometryengine.h"
 
@@ -19,6 +20,7 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     geometries(0)
 {
     this->motion = new Motion(this);
+    this->motionbuilder = new MotionBuilder(this);
     this->motion_loaded = false;
     this->connect(this, SIGNAL(motionChanged()), this, SLOT(update()));
     this->timer = new QTimer(this);
@@ -100,15 +102,16 @@ void MotionViewerWidget::paintGL()
 }
 
 void MotionViewerWidget::openMotionFile(const QString &filename){
-    this->motion_loaded = this->motion->open(filename);
+    this->motion = this->motionbuilder->open(filename);
+    this->motion_loaded = this->motion != nullptr;
     emit this->motionChanged();
 }
 
 void MotionViewerWidget::updateMotionProperties()
 {
     if(this->motion_loaded){
-        this->fps = this->motion->getProperty("DataRate");
-        this->max_frame = this->motion->getProperty("NumFrames");
+        this->fps = this->motion->fps();
+        this->max_frame = this->motion->maxFlame();
     }
 }
 
