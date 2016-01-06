@@ -82,7 +82,52 @@ Motion* MotionBuilder::buildFromTRC(const QString &filename, QObject *parent){
 }
 
 Motion* MotionBuilder::buildFromTS(const QString &filename, QObject *parent){
-    return nullptr;
+    const QChar sep = '\t';
+    const QChar rm = '\r';
+    Motion* motion = new Motion(parent);
+    QFile f(filename);
+    if(!f.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return nullptr;
+    }
+    QTextStream stream(&f);
+    stream.readLine();  // ignore PathFileType
+    QStringList prop_names = stream.readLine().remove(rm).split(sep);
+    QStringList prop_values = stream.readLine().remove(rm).split(sep);
+    if(prop_names.size() != prop_values.size()){
+        return nullptr;
+    }
+    for(int i = 0;i<prop_names.size();++i){
+        if(prop_names[i] == "DataRate"){
+            bool is_float = false;
+            float float_value = prop_values[i].toFloat(&is_float);
+            if(is_float){
+                motion->setFps(float_value);
+            }
+        }
+        else if(prop_names[i] == "NumFrames"){
+            bool is_int = false;
+            int val = prop_values[i].toInt(&is_int);
+            if(is_int){
+                motion->setMaxFlame(val);
+            }
+        }
+    }
+    QStringList markers = stream.readLine().remove(rm).split(sep);
+    motion->setMarkers(markers);
+    stream.readLine();
+    stream.readLine();
+    bool dst = true;
+    while(!stream.atEnd()){
+        QStringList cells = stream.readLine().remove(rm).split(sep);
+        if(!MotionBuilder::buildPoseFromTS(cells, motion))
+        {
+            dst = false;
+        }
+    }
+    if(!dst){
+        return nullptr;
+    }
+    return motion;
 }
 
 Motion* MotionBuilder::buildFromCSV(const QString &filename, QObject *parent){
@@ -154,6 +199,23 @@ bool MotionBuilder::buildPoseFromTRC(const QStringList &cells, Motion *motion)
     Pose* pose = new Pose(motion);
     int frame = cells[0].toInt();
     for(int i = 2;i < motion->markers().size()-2;i+=3){
+        bool x_ok, y_ok, z_ok;
+        float x = cells[i].toFloat(&x_ok);
+        float y = cells[i+1].toFloat(&y_ok);
+        float z = cells[i+2].toFloat(&z_ok);
+        if(x_ok && y_ok && z_ok){
+            pose->addJointData(motion->markers()[i], x, y, z);
+        }
+    }
+    motion->set(frame, pose);
+    return true;
+}
+
+bool MotionBuilder::buildPoseFromTS(const QStringList &cells, Motion *motion)
+{
+    Pose* pose = new Pose(motion);
+    int frame = cells[0].toInt();
+    for(int i = 2;i < motion->markers().size()-10;i+=11){
         bool x_ok, y_ok, z_ok;
         float x = cells[i].toFloat(&x_ok);
         float y = cells[i+1].toFloat(&y_ok);
