@@ -20,7 +20,6 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     geometries(0)
 {
     this->motion = new Motion(this);
-    this->motionbuilder = new MotionBuilder(this);
     this->motion_loaded = false;
     this->connect(this, SIGNAL(motionChanged()), this, SLOT(update()));
     this->timer = new QTimer(this);
@@ -102,7 +101,7 @@ void MotionViewerWidget::paintGL()
 }
 
 void MotionViewerWidget::openMotionFile(const QString &filename){
-    this->motion = this->motionbuilder->open(filename);
+    this->motion = MotionBuilder::open(filename, this);
     this->motion_loaded = this->motion != nullptr;
     emit this->motionChanged();
 }

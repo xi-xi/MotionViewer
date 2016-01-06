@@ -12,13 +12,13 @@ class MotionBuilder : public QObject
 {
     Q_OBJECT
 public:
-    explicit MotionBuilder(QObject *parent = 0);
-    static Motion* open(const QString& filename);
+    static Motion* open(const QString& filename, QObject* parent=0);
 
 private:
-    static Motion* buildFromCSV(const QString& filename);
-    static Motion* buildFromTRC(const QString& filename);
-    static Motion* buildFromTS(const QString& filename);
+    explicit MotionBuilder(QObject *parent = 0);
+    static Motion* buildFromCSV(const QString& filename, QObject* parent=0);
+    static Motion* buildFromTRC(const QString& filename, QObject* parent=0);
+    static Motion* buildFromTS(const QString& filename, QObject* parent=0);
 
     static bool buildPoseFromCSV(const QString& line, Motion* motion);
 };

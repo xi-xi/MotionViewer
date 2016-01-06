@@ -10,33 +10,33 @@ MotionBuilder::MotionBuilder(QObject *parent) : QObject(parent)
 
 }
 
-Motion* MotionBuilder::open(const QString &filename)
+Motion* MotionBuilder::open(const QString &filename, QObject *parent)
 {
     QFileInfo info(filename);
     auto ext = info.suffix().toLower();
     if(ext == "trc"){
-        return this->buildFromTRC(filename);
+        return MotionBuilder::buildFromTRC(filename, parent);
     }
     else if(ext == "ts"){
-        return this->buildFromTS(filename);
+        return MotionBuilder::buildFromTS(filename, parent);
     }
     else if(ext == "csv"){
-        return this->buildFromCSV(filename);
+        return MotionBuilder::buildFromCSV(filename, parent);
     }
     return nullptr;
 }
 
-Motion* MotionBuilder::buildFromTRC(const QString &filename){
+Motion* MotionBuilder::buildFromTRC(const QString &filename, QObject *parent){
     return nullptr;
 }
 
-Motion* MotionBuilder::buildFromTS(const QString &filename){
+Motion* MotionBuilder::buildFromTS(const QString &filename, QObject *parent){
     return nullptr;
 }
 
-Motion* MotionBuilder::buildFromCSV(const QString &filename){
+Motion* MotionBuilder::buildFromCSV(const QString &filename, QObject *parent){
     const QChar sep = ',';
-    Motion* motion = new Motion(this->parent());
+    Motion* motion = new Motion(parent);
     QFile f(filename);
     if(!f.open(QIODevice::ReadOnly | QIODevice::Text)){
         return nullptr;
@@ -70,7 +70,6 @@ Motion* MotionBuilder::buildFromCSV(const QString &filename){
         if(!MotionBuilder::buildPoseFromCSV(line, motion))
         {
             dst = false;
-            delete pose;
         }
     }
     if(!dst){
@@ -83,18 +82,19 @@ bool MotionBuilder::buildPoseFromCSV(const QString &line, Motion *motion)
 {
     bool dst = true;
     QStringList cells = line.split(",");
-    int frame =cells[0].toInt();
-    for(int i = 2;i<cells.size();i+=3){
+    Pose* pose = new Pose(motion);
+    int frame = cells[0].toInt();
+    for(int i = 2;i<motion->markers().size();i+=3){
         bool x_ok, y_ok, z_ok;
         float x = cells[i].toFloat(&x_ok);
         float y = cells[i+1].toFloat(&y_ok);
         float z = cells[i+2].toFloat(&z_ok);
         if(x_ok && y_ok && z_ok){
-            motion->addJointData(markers[i], x, y, z);
+            pose->addJointData(motion->markers()[i], x, y, z);
         }
     }
     if(dst){
-        this->poses[frame] = motion;
+        motion->set(frame, pose);
     }
     return dst;
 }
