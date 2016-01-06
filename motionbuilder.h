@@ -20,7 +20,9 @@ private:
     static Motion* buildFromTRC(const QString& filename, QObject* parent=0);
     static Motion* buildFromTS(const QString& filename, QObject* parent=0);
 
-    static bool buildPoseFromCSV(const QString& line, Motion* motion);
+    static bool buildPoseFromCSV(const QStringList& cells, Motion* motion);
+    static bool buildPoseFromTRC(const QStringList& cells, Motion* motion);
+    static bool buildPoseFromTS(const QStringList& cells, Motion* motion);
 };
 
 #endif // MOTIONBUILDER_H
