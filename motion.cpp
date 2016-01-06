@@ -3,93 +3,15 @@
 #include <QFile>
 #include <QTextStream>
 
-Motion::Motion(QObject *parent) : QObject(parent)
+Motion::Motion(QObject *parent) : QObject(parent),
+    fps_(.0), maxFrame_(0)
 {
 
-}
-
-Motion::Motion(const QString &filename, QObject *parent) :
-    QObject(parent)
-{
-    this->open(filename);
 }
 
 Motion::~Motion()
 {
     qDeleteAll(this->poses);
-}
-
-bool Motion::open(const QString &filename)
-{
-    QFile f(filename);
-    if(!f.open(QIODevice::ReadOnly | QIODevice::Text)){
-        return false;
-    }
-    QTextStream stream(&f);
-    return this->build(stream);
-}
-
-bool Motion::containsProperty(const QString &name) const{
-    return this->properties.contains(name);
-}
-
-float Motion::getProperty(const QString &name)const{
-    return this->properties[name];
-}
-
-bool Motion::build(QTextStream &stream)
-{
-    QString prop_name = stream.readLine();
-    QString prop_value = stream.readLine();
-    if(!this->buildProperty(prop_name, prop_value)){
-        return false;
-    }
-    this->markers = stream.readLine().split(",");
-    bool dst = true;
-    while(!stream.atEnd()){
-        QString line = stream.readLine();
-        Pose* pose = new Pose();
-        if(!this->buildPose(line, pose)){
-            dst = false;
-            delete pose;
-        }
-    }
-    return dst;
-}
-
-bool Motion::buildProperty(const QString &name, const QString &value){
-    QStringList names = name.split(",");
-    QStringList vals = value.split(",");
-    if(names.size() != vals.size()){
-        return false;
-    }
-    for(int i = 0;i<names.size();++i){
-        bool is_float = true;
-        float float_value = vals[i].toFloat(&is_float);
-        if(is_float){
-            this->properties[names[i]] = float_value;
-        }
-    }
-    return true;
-}
-
-bool Motion::buildPose(const QString &line, Pose *pose){
-    bool dst = true;
-    QStringList cells = line.split(",");
-    int frame =cells[0].toInt();
-    for(int i = 2;i<cells.size();i+=3){
-        bool x_ok, y_ok, z_ok;
-        float x = cells[i].toFloat(&x_ok);
-        float y = cells[i+1].toFloat(&y_ok);
-        float z = cells[i+2].toFloat(&z_ok);
-        if(x_ok && y_ok && z_ok){
-            pose->addJointData(markers[i], x, y, z);
-        }
-    }
-    if(dst){
-        this->poses[frame] = pose;
-    }
-    return dst;
 }
 
 const Pose* Motion::at(int frame) const{
@@ -98,4 +20,32 @@ const Pose* Motion::at(int frame) const{
 
 Pose *Motion::at(int frame){
     return this->poses[frame];
+}
+
+float Motion::fps()const{
+    return this->fps_;
+}
+
+void Motion::setFps(float fps){
+    this->fps_ = fps;
+}
+
+int Motion::maxFlame()const{
+    return this->maxFrame_;
+}
+
+void Motion::setMaxFlame(int max_frame){
+    this->maxFrame_ = max_frame;
+}
+
+const QStringList& Motion::markers()const{
+    return this->markers_;
+}
+
+void Motion::setMarkers(const QStringList &markers){
+    this->markers_ = markers;
+}
+
+void Motion::set(int frame, Pose *pose){
+    this->poses[frame] = pose;
 }
