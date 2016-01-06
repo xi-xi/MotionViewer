@@ -103,6 +103,12 @@ DrawConfigure* DrawConfigure::defaultConfigure(QObject *parent){
     conf->addConnectJoint("L.Heel","L.Foot");
     conf->addConnectJoint("L.Heel","L.Toe");
     conf->addConnectJoint("L.Toe","L.Foot");
+
+    conf->addConnectJoint("Neck", "L.Shoulder");
+    conf->addConnectJoint("L.Shouder", "L.BackOffset");
+    conf->addConnectJoint("L.Shouder", "R.Shoulder");
+    conf->addConnectJoint("L.Shouder", "L.Elbow");
+    conf->addConnectJoint("L.Shouder", "L.Bicep");
     conf->box_size = QVector3D(10, 10, 10);
     return conf;
 }

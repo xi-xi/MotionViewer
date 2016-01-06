@@ -12,11 +12,7 @@ class Motion : public QObject
     Q_OBJECT
 public:
     explicit Motion(QObject *parent = 0);
-    Motion(const QString& filename, QObject* parent = 0);
     ~Motion();
-    bool open(const QString& filename);
-    bool containsProperty(const QString& name)const;
-    float getProperty(const QString& name)const;
     const Pose* operator[](int frame)const{
         return this->at(frame);
     }
@@ -26,19 +22,23 @@ public:
 
     const Pose* at(int frame)const;
     Pose* at(int frame);
+    void set(int frame, Pose* pose);
+    float fps()const;
+    void setFps(float fps);
+    int maxFlame()const;
+    void setMaxFlame(int max_frame);
+    const QStringList& markers()const;
+    void setMarkers(const QStringList& markers);
 
 signals:
 
 public slots:
 
 private:
-    bool build(QTextStream& stream);
-    bool buildProperty(const QString& name, const QString& value);
-    bool buildPose(const QString& line, Pose* pose);
-
     QMap<int, Pose*> poses;
-    QStringList markers;
-    QMap<QString, float> properties;
+    QStringList markers_;
+    float fps_;
+    int maxFrame_;
 };
 
 #endif // MOTION_H
