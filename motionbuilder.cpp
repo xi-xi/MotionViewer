@@ -179,7 +179,7 @@ bool MotionBuilder::buildPoseFromCSV(const QStringList &cells, Motion *motion)
     bool dst = true;
     Pose* pose = new Pose(motion);
     int frame = cells[0].toInt();
-    for(int i = 2;i<motion->markers().size();i+=3){
+    for(int i = 2;i<motion->markers().size()-2 && i < cells.size() -2;i+=3){
         bool x_ok, y_ok, z_ok;
         float x = cells[i].toFloat(&x_ok);
         float y = cells[i+1].toFloat(&y_ok);
@@ -198,7 +198,7 @@ bool MotionBuilder::buildPoseFromTRC(const QStringList &cells, Motion *motion)
 {
     Pose* pose = new Pose(motion);
     int frame = cells[0].toInt();
-    for(int i = 2;i < motion->markers().size()-2;i+=3){
+    for(int i = 2;i < motion->markers().size()-2 && i < cells.size() - 2;i+=3){
         bool x_ok, y_ok, z_ok;
         float x = cells[i].toFloat(&x_ok);
         float y = cells[i+1].toFloat(&y_ok);
@@ -215,7 +215,7 @@ bool MotionBuilder::buildPoseFromTS(const QStringList &cells, Motion *motion)
 {
     Pose* pose = new Pose(motion);
     int frame = cells[0].toInt();
-    for(int i = 2;i < motion->markers().size()-10;i+=11){
+    for(int i = 2;i < motion->markers().size()-10 && i < cells.size() - 10;i+=11){
         bool x_ok, y_ok, z_ok;
         float x = cells[i].toFloat(&x_ok);
         float y = cells[i+1].toFloat(&y_ok);
