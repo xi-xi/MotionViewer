@@ -256,17 +256,22 @@ Motion* MotionBuilder::buildFromXLSX(const QString &filenname, QObject *parent)
             max_frame = frame;
         }
         Pose* pose = new Pose(motion);
-        for(int x = 2;x<=COLUMN_RANGE - 2;x += 3){
+        for(int x = 3;x<=COLUMN_RANGE - 2;x += 3){
             QXlsx::Cell* cell_x = sheet->cellAt(y, x);
             QXlsx::Cell* cell_y = sheet->cellAt(y, x + 1);
             QXlsx::Cell* cell_z = sheet->cellAt(y, x + 2);
             if(cell_x && cell_y && cell_z){
                 pose->addJointData(
                     motion->markers()[x],
-                    cell_z->value().value<float>() * 1000,
                     cell_y->value().value<float>() * 1000,
+                    cell_z->value().value<float>() * 1000,
                     cell_x->value().value<float>() * 1000
                 );
+//                qDebug() << motion->markers()[x]
+//                         << cell_y->value().value<float>() * 1000
+//                        << cell_z->value().value<float>() * 1000
+//                        << cell_x->value().value<float>() * 1000;
+//                break;
 //                qDebug() << frame
 //                    << cell_x->value().value<float>()
 //                    << cell_y->value().value<float>()
