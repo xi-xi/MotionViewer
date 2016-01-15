@@ -152,6 +152,7 @@ void MotionViewerWidget::updateCurrentFrame()
     namespace sc = std::chrono;
     if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
+        this->stop();
     }
     else{
         auto now = sc::system_clock::now();
