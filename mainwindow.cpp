@@ -13,6 +13,8 @@
 #include <QMimeData>
 #include <QUrl>
 #include <QKeyEvent>
+#include <QSlider>
+#include <QSpinBox>
 
 #include "motionviewerwidget.h"
 
@@ -33,6 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->play_stop = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaPlay),"Play", this);
     this->next = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipForward), "Next", this);
 
+    this->slider = new QSlider(Qt::Horizontal, this);
+    this->box = new QSpinBox(this);
+    this->maxframe_label = new QLabel(this);
+
     this->initUI();
     this->initLogic();
 
@@ -51,6 +57,10 @@ void MainWindow::initUI()
     this->operationbar->addAction(this->back);
     this->operationbar->addAction(this->play_stop);
     this->operationbar->addAction(this->next);
+    this->operationbar->addWidget(this->slider);
+    this->slider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    this->operationbar->addWidget(this->box);
+    this->operationbar->addWidget(this->maxframe_label);
 }
 
 void MainWindow::initLogic()
