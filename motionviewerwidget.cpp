@@ -127,6 +127,9 @@ bool MotionViewerWidget::isPlaying()const{
 
 void MotionViewerWidget::play()
 {
+    if(this->current_frame >= this->max_frame){
+        this->setCurrentFrame(1);
+    }
     this->timer->start();
     this->playing = true;
     this->start_time = Time::now();
