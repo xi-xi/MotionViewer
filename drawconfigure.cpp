@@ -112,8 +112,8 @@ DrawConfigure* DrawConfigure::defaultConfigure(QObject *parent){
 
     conf->addConnectJoint("Hip", "Neck");
     conf->addConnectJoint("Neck", "Head");
-    conf->addConnectJoint("L5", "L3");
-    conf->addConnectJoint("T12", "T8");
+//    conf->addConnectJoint("L5", "L3");
+//    conf->addConnectJoint("T12", "T8");
     conf->addConnectJoint("R.Shoulder", "R.UpperArm");
     conf->addConnectJoint("R.ForeArm", "R.UpperArm");
     conf->addConnectJoint("R.ForeArm", "R.Hand");
