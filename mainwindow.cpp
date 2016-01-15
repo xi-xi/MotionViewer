@@ -91,7 +91,12 @@ void MainWindow::openMotionFile(const QString &filename){
 
 void MainWindow::openFile()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open motion file(.csv)",QString(), "motion (*.csv);;any (*.*)");
+    QString filename = QFileDialog::getOpenFileName(
+        this,
+        "Open motion file(.csv)",
+        QString(),
+        "motion (*.csv *.ts *.trc *.xlsx);;any (*.*)"
+    );
     if(filename.size() != 0)
     {
         emit this->motionFileChanged(filename);
