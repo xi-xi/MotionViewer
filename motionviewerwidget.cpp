@@ -166,6 +166,9 @@ void MotionViewerWidget::updateCurrentFrame()
 }
 
 void MotionViewerWidget::setCurrentFrame(int frame){
+    if(this->current_frame == frame){
+        return;
+    }
     this->current_frame = frame;
     if(frame <= 0){
         this->current_frame = this->max_frame;
@@ -217,4 +220,8 @@ void MotionViewerWidget::updatePerspective()
     projection.perspective(this->fov, this->aspect, this->zNear, this->zFar);
     if(!this->isPlaying())
         this->update();
+}
+
+const Motion* MotionViewerWidget::getMotion()const{
+    return this->motion;
 }
