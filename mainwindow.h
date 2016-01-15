@@ -7,6 +7,8 @@ class QMenu;
 class QAction;
 class QToolBar;
 class QLabel;
+class QSlider;
+class QSpinBox;
 class MotionViewerWidget;
 
 class MainWindow : public QMainWindow
@@ -34,7 +36,6 @@ signals:
     void motionFileChanged(const QString& filename);
 
 private:
-    QLabel *filename;
     QMenu *filemenu;
     QAction *openaction;
     QAction *configureaction;
@@ -44,6 +45,9 @@ private:
     QAction *back;
     QAction *play_stop;
     QAction *next;
+    QSlider *slider;
+    QSpinBox *box;
+    QLabel *maxframe_label;
 
     void initUI();
     void initLogic();

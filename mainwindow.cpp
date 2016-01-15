@@ -13,7 +13,10 @@
 #include <QMimeData>
 #include <QUrl>
 #include <QKeyEvent>
+#include <QSlider>
+#include <QSpinBox>
 
+#include "motion.h"
 #include "motionviewerwidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -33,7 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->play_stop = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaPlay),"Play", this);
     this->next = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipForward), "Next", this);
 
-    this->filename = new QLabel("Not Opened",this);
+    this->slider = new QSlider(Qt::Horizontal, this);
+    this->box = new QSpinBox(this);
+    this->maxframe_label = new QLabel(this);
+
     this->initUI();
     this->initLogic();
 
@@ -52,13 +58,16 @@ void MainWindow::initUI()
     this->operationbar->addAction(this->back);
     this->operationbar->addAction(this->play_stop);
     this->operationbar->addAction(this->next);
-    this->operationbar->addWidget(this->filename);
+    this->operationbar->addWidget(this->slider);
+    this->slider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    this->operationbar->addWidget(this->box);
+    this->operationbar->addWidget(this->maxframe_label);
 }
 
 void MainWindow::initLogic()
 {
-    this->connect(this, SIGNAL(motionFileChanged(QString)), this, SLOT(onMotionFileChanged(QString)));
     this->connect(this, SIGNAL(motionFileChanged(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
+    this->connect(this, SIGNAL(motionFileChanged(QString)), this, SLOT(onMotionFileChanged(QString)));
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
     this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
@@ -66,6 +75,10 @@ void MainWindow::initLogic()
     this->connect(this->play_stop, SIGNAL(triggered()), this, SLOT(playstopButtonClicked()));
     this->connect(this->next, SIGNAL(triggered()), this, SLOT(nextButtonClicked()));
     this->connect(this->viewerwidget, SIGNAL(playStateChanged(bool)), this, SLOT(setPlayStopButtonState(bool)));
+    this->connect(this->viewerwidget, SIGNAL(currentFrameChanged(int)), this->slider, SLOT(setValue(int)));
+    this->connect(this->viewerwidget, SIGNAL(currentFrameChanged(int)), this->box, SLOT(setValue(int)));
+    this->connect(this->slider, SIGNAL(valueChanged(int)), this->viewerwidget, SLOT(setCurrentFrame(int)));
+    this->connect(this->box, SIGNAL(valueChanged(int)), this->viewerwidget, SLOT(setCurrentFrame(int)));
 }
 
 MainWindow::~MainWindow()
@@ -119,7 +132,11 @@ void MainWindow::nextButtonClicked()
 }
 
 void MainWindow::onMotionFileChanged(const QString &filename){
-    this->filename->setText(filename);
+    this->setWindowTitle("Motion Viewer  " + filename);
+    this->slider->setMinimum(1);
+    this->slider->setMaximum(this->viewerwidget->getMotion()->maxFlame());
+    this->box->setMinimum(1);
+    this->box->setMaximum(this->viewerwidget->getMotion()->maxFlame());
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
