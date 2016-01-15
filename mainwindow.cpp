@@ -16,6 +16,7 @@
 #include <QSlider>
 #include <QSpinBox>
 
+#include "motion.h"
 #include "motionviewerwidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -65,8 +66,8 @@ void MainWindow::initUI()
 
 void MainWindow::initLogic()
 {
-    this->connect(this, SIGNAL(motionFileChanged(QString)), this, SLOT(onMotionFileChanged(QString)));
     this->connect(this, SIGNAL(motionFileChanged(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
+    this->connect(this, SIGNAL(motionFileChanged(QString)), this, SLOT(onMotionFileChanged(QString)));
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
     this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
@@ -74,6 +75,10 @@ void MainWindow::initLogic()
     this->connect(this->play_stop, SIGNAL(triggered()), this, SLOT(playstopButtonClicked()));
     this->connect(this->next, SIGNAL(triggered()), this, SLOT(nextButtonClicked()));
     this->connect(this->viewerwidget, SIGNAL(playStateChanged(bool)), this, SLOT(setPlayStopButtonState(bool)));
+    this->connect(this->viewerwidget, SIGNAL(currentFrameChanged(int)), this->slider, SLOT(setValue(int)));
+    this->connect(this->viewerwidget, SIGNAL(currentFrameChanged(int)), this->box, SLOT(setValue(int)));
+    this->connect(this->slider, SIGNAL(valueChanged(int)), this->viewerwidget, SLOT(setCurrentFrame(int)));
+    this->connect(this->box, SIGNAL(valueChanged(int)), this->viewerwidget, SLOT(setCurrentFrame(int)));
 }
 
 MainWindow::~MainWindow()
@@ -128,6 +133,10 @@ void MainWindow::nextButtonClicked()
 
 void MainWindow::onMotionFileChanged(const QString &filename){
     this->setWindowTitle("Motion Viewer  " + filename);
+    this->slider->setMinimum(1);
+    this->slider->setMaximum(this->viewerwidget->getMotion()->maxFlame());
+    this->box->setMinimum(1);
+    this->box->setMaximum(this->viewerwidget->getMotion()->maxFlame());
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)

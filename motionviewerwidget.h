@@ -22,6 +22,7 @@ public:
     ~MotionViewerWidget();
 
     bool isPlaying()const;
+    const Motion* getMotion()const;
 
 public slots:
     void openMotionFile(const QString& filename);

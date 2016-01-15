@@ -220,3 +220,7 @@ void MotionViewerWidget::updatePerspective()
     if(!this->isPlaying())
         this->update();
 }
+
+const Motion* MotionViewerWidget::getMotion()const{
+    return this->motion;
+}
