@@ -17,7 +17,8 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
     playing(false),
     current_frame(1),
-    geometries(0)
+    geometries(0),
+    max_frame(1)
 {
     this->motion = new Motion(this);
     this->motion_loaded = false;
@@ -116,7 +117,8 @@ void MotionViewerWidget::updateMotionProperties()
 
 void MotionViewerWidget::onMotionChanged()
 {
-
+    this->stop();
+    this->setCurrentFrame(1);
 }
 
 bool MotionViewerWidget::isPlaying()const{
@@ -133,6 +135,9 @@ void MotionViewerWidget::play()
 
 void MotionViewerWidget::stop()
 {
+    if(!this->isPlaying()){
+        return;
+    }
     this->timer->stop();
     this->playing = false;
     this->start_frame = this->current_frame;
