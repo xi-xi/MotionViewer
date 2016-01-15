@@ -17,6 +17,7 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     QOpenGLWidget(parent),
     playing(false),
     current_frame(1),
+    max_frame(1),
     geometries(0)
 {
     this->motion = new Motion(this);
@@ -116,7 +117,8 @@ void MotionViewerWidget::updateMotionProperties()
 
 void MotionViewerWidget::onMotionChanged()
 {
-
+    this->stop();
+    this->setCurrentFrame(1);
 }
 
 bool MotionViewerWidget::isPlaying()const{
@@ -125,6 +127,9 @@ bool MotionViewerWidget::isPlaying()const{
 
 void MotionViewerWidget::play()
 {
+    if(this->current_frame >= this->max_frame){
+        this->setCurrentFrame(1);
+    }
     this->timer->start();
     this->playing = true;
     this->start_time = Time::now();
@@ -133,6 +138,9 @@ void MotionViewerWidget::play()
 
 void MotionViewerWidget::stop()
 {
+    if(!this->isPlaying()){
+        return;
+    }
     this->timer->stop();
     this->playing = false;
     this->start_frame = this->current_frame;
@@ -144,6 +152,7 @@ void MotionViewerWidget::updateCurrentFrame()
     namespace sc = std::chrono;
     if(this->current_frame >= this->max_frame){
         this->current_frame = this->max_frame;
+        this->stop();
     }
     else{
         auto now = sc::system_clock::now();
@@ -157,6 +166,9 @@ void MotionViewerWidget::updateCurrentFrame()
 }
 
 void MotionViewerWidget::setCurrentFrame(int frame){
+    if(this->current_frame == frame){
+        return;
+    }
     this->current_frame = frame;
     if(frame <= 0){
         this->current_frame = this->max_frame;
@@ -176,7 +188,7 @@ void MotionViewerWidget::mousePressEvent(QMouseEvent *event){
 void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
     if(event->buttons() & Qt::LeftButton){
         QPoint vec = event->pos() - this->mouseclicked_position;
-        this->camera_translate.setX(this->camera_translate.x() + vec.x());
+        this->camera_translate.setX(this->camera_translate.x() - vec.x());
         this->camera_translate.setY(this->camera_translate.y() + vec.y());
         this->updatePerspective();
         this->mouseclicked_position = event->pos();
@@ -208,4 +220,8 @@ void MotionViewerWidget::updatePerspective()
     projection.perspective(this->fov, this->aspect, this->zNear, this->zFar);
     if(!this->isPlaying())
         this->update();
+}
+
+const Motion* MotionViewerWidget::getMotion()const{
+    return this->motion;
 }

@@ -10,6 +10,8 @@ CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+include(3rdparty/qtxlsx/src/xlsx/qtxlsx.pri)
+
 TARGET = MotionViewer
 TEMPLATE = app
 
