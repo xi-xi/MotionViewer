@@ -33,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->play_stop = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaPlay),"Play", this);
     this->next = new QAction(QApplication::style()->standardIcon(QStyle::SP_MediaSkipForward), "Next", this);
 
-    this->filename = new QLabel("Not Opened",this);
     this->initUI();
     this->initLogic();
 
@@ -52,7 +51,6 @@ void MainWindow::initUI()
     this->operationbar->addAction(this->back);
     this->operationbar->addAction(this->play_stop);
     this->operationbar->addAction(this->next);
-    this->operationbar->addWidget(this->filename);
 }
 
 void MainWindow::initLogic()
@@ -119,7 +117,7 @@ void MainWindow::nextButtonClicked()
 }
 
 void MainWindow::onMotionFileChanged(const QString &filename){
-    this->filename->setText(filename);
+    this->setWindowTitle("Motion Viewer  " + filename);
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)

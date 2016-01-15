@@ -34,7 +34,6 @@ signals:
     void motionFileChanged(const QString& filename);
 
 private:
-    QLabel *filename;
     QMenu *filemenu;
     QAction *openaction;
     QAction *configureaction;
