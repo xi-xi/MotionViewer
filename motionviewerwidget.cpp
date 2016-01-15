@@ -184,7 +184,7 @@ void MotionViewerWidget::mousePressEvent(QMouseEvent *event){
 void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
     if(event->buttons() & Qt::LeftButton){
         QPoint vec = event->pos() - this->mouseclicked_position;
-        this->camera_translate.setX(this->camera_translate.x() + vec.x());
+        this->camera_translate.setX(this->camera_translate.x() - vec.x());
         this->camera_translate.setY(this->camera_translate.y() + vec.y());
         this->updatePerspective();
         this->mouseclicked_position = event->pos();
