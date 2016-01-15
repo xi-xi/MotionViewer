@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
+#include "xlsxdocument.h"
 #include "motion.h"
 
 MotionBuilder::MotionBuilder(QObject *parent) : QObject(parent)
@@ -22,6 +23,9 @@ Motion* MotionBuilder::open(const QString &filename, QObject *parent)
     }
     else if(ext == "csv"){
         return MotionBuilder::buildFromCSV(filename, parent);
+    }
+    else if(ext == "xlsx"){
+        return MotionBuilder::buildFromXLSX(filename, parent);
     }
     return nullptr;
 }
@@ -226,4 +230,46 @@ bool MotionBuilder::buildPoseFromTS(const QStringList &cells, Motion *motion)
     }
     motion->set(frame, pose);
     return true;
+}
+
+Motion* MotionBuilder::buildFromXLSX(const QString &filenname, QObject *parent)
+{
+    const int COLUMN_RANGE = 71;
+    const QStringList MARKER_LABELS = QString(
+        ",Frame#,Time,Hip,,,L5,,,L3,,,T12,,,T8,,,Neck,,,Head,,,R.Shoulder,,,R.UpperArm,,,R.ForeArm,,,R.Hand,,,L.Shoulder,,,L.UpperArm,,,L.ForeArm,,,L.Hand,,,R.Thigh,,,R.Shin,,,R.Ankle,,,R.Foot,,,L.Thigh,,,L.Shin,,,L.Ankle,,,L.Foot"
+    ).split(",");
+    Motion* motion = new Motion(parent);
+    motion->setFps(120);
+    motion->setMarkers(MARKER_LABELS);
+    QXlsx::Document xlsx(filenname);
+    QXlsx::Worksheet *sheet = dynamic_cast<QXlsx::Worksheet*>(xlsx.sheet(xlsx.sheetNames()[0]));
+    QXlsx::CellRange range = sheet->dimension();
+    int last_row = range.lastRow();
+    int max_frame = 0;
+    for(int y = 2;y<=last_row;++y){
+        int frame = sheet->cellAt(y, 1)->value().value<float>();
+        if(frame <= 0){
+            continue;
+        }
+        if(frame > max_frame){
+            max_frame = frame;
+        }
+        Pose* pose = new Pose(motion);
+        for(int x = 3;x<=COLUMN_RANGE - 2;x += 3){
+            QXlsx::Cell* cell_x = sheet->cellAt(y, x);
+            QXlsx::Cell* cell_y = sheet->cellAt(y, x + 1);
+            QXlsx::Cell* cell_z = sheet->cellAt(y, x + 2);
+            if(cell_x && cell_y && cell_z){
+                pose->addJointData(
+                    motion->markers()[x],
+                    cell_y->value().value<float>() * 1000,
+                    cell_z->value().value<float>() * 1000,
+                    cell_x->value().value<float>() * 1000
+                );
+            }
+        }
+        motion->set(frame, pose);
+    }
+    motion->setMaxFlame(max_frame);
+    return motion;
 }
