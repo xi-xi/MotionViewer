@@ -165,6 +165,9 @@ void MotionViewerWidget::updateCurrentFrame()
 }
 
 void MotionViewerWidget::setCurrentFrame(int frame){
+    if(this->current_frame == frame){
+        return;
+    }
     this->current_frame = frame;
     if(frame <= 0){
         this->current_frame = this->max_frame;
