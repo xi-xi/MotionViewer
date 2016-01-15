@@ -3,7 +3,6 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
-#include <QDebug>
 #include "xlsxdocument.h"
 #include "motion.h"
 
@@ -235,9 +234,9 @@ bool MotionBuilder::buildPoseFromTS(const QStringList &cells, Motion *motion)
 
 Motion* MotionBuilder::buildFromXLSX(const QString &filenname, QObject *parent)
 {
-    const int COLUMN_RANGE = 70;
+    const int COLUMN_RANGE = 71;
     const QStringList MARKER_LABELS = QString(
-        "Frame#,Time,Hip,,,L5,,,L3,,,T12,,,T8,,,Neck,,,Head,,,R.Shoulder,,,R.UpperArm,,,R.ForeArm,,,R.Hand,,,L.Shoulder,,,L.UpperArm,,,L.ForeArm,,,L.Hand,,,R.Thigh,,,R.Shin,,,R.Ankle,,,R.Foot,,,L.Thigh,,,L.Shin,,,L.Ankle,,,L.Foot"
+        ",Frame#,Time,Hip,,,L5,,,L3,,,T12,,,T8,,,Neck,,,Head,,,R.Shoulder,,,R.UpperArm,,,R.ForeArm,,,R.Hand,,,L.Shoulder,,,L.UpperArm,,,L.ForeArm,,,L.Hand,,,R.Thigh,,,R.Shin,,,R.Ankle,,,R.Foot,,,L.Thigh,,,L.Shin,,,L.Ankle,,,L.Foot"
     ).split(",");
     Motion* motion = new Motion(parent);
     motion->setFps(120);
@@ -267,15 +266,6 @@ Motion* MotionBuilder::buildFromXLSX(const QString &filenname, QObject *parent)
                     cell_z->value().value<float>() * 1000,
                     cell_x->value().value<float>() * 1000
                 );
-//                qDebug() << motion->markers()[x]
-//                         << cell_y->value().value<float>() * 1000
-//                        << cell_z->value().value<float>() * 1000
-//                        << cell_x->value().value<float>() * 1000;
-//                break;
-//                qDebug() << frame
-//                    << cell_x->value().value<float>()
-//                    << cell_y->value().value<float>()
-//                    << cell_z->value().value<float>();
             }
         }
         motion->set(frame, pose);
