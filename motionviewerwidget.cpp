@@ -7,6 +7,7 @@
 #include <QWheelEvent>
 #include <QtMath>
 #include <chrono>
+#include <QDebug>
 
 #include "motion.h"
 #include "motionbuilder.h"
@@ -29,6 +30,8 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     connect(this, SIGNAL(motionChanged()), this, SLOT(onMotionChanged()));
     connect(this, SIGNAL(motionChanged()), this, SLOT(updateMotionProperties()));
     connect(this, SIGNAL(currentFrameChanged(int)), this, SLOT(update()));
+    this->updatePerspective();
+    this->updateCameraMatrix();
 }
 
 MotionViewerWidget::~MotionViewerWidget()
@@ -87,16 +90,13 @@ void MotionViewerWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    QMatrix4x4 matrix;
-    matrix.translate(-1.0 * this->camera_translate);
-    matrix.rotate(-1.0 * this->camera_angle, QVector3D(.0, 1.0, .0));
     this->program.setUniformValue("texture", 0);
-    this->plane->draw(&this->program, projection * matrix);
+    this->plane->draw(&this->program, projection * this->camera_matrix);
     if(!this->motion_loaded)
         return;
     this->geometries->drawMotionGeometry(
                 &this->program,
-                projection * matrix,
+                projection * this->camera_matrix,
                 this->motion->at(this->current_frame)
                 );
 }
@@ -182,25 +182,36 @@ void MotionViewerWidget::setCurrentFrame(int frame){
 }
 
 void MotionViewerWidget::mousePressEvent(QMouseEvent *event){
-    this->mouseclicked_position = event->pos();
+    if(event->buttons() & Qt::LeftButton){
+        this->mouse_left_clicked_position = event->pos();
+    }
+    if(event->buttons() & Qt::RightButton){
+        this->mouse_right_clicked_position = event->pos();
+    }
 }
 
 void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
     if(event->buttons() & Qt::LeftButton){
-        QPoint vec = event->pos() - this->mouseclicked_position;
-        this->camera_translate.setX(this->camera_translate.x() - vec.x());
-        this->camera_translate.setY(this->camera_translate.y() + vec.y());
-        this->updatePerspective();
-        this->mouseclicked_position = event->pos();
+        QPoint vec = event->pos() - this->mouse_left_clicked_position;
+        this->camera_position.setX(this->camera_position.x() - vec.x());
+        this->camera_position.setY(this->camera_position.y() + vec.y());
+        this->updateCameraMatrix();
+        this->mouse_left_clicked_position = event->pos();
+    }
+    if(event->buttons() & Qt::RightButton){
+        QPoint vec = event->pos() - this->mouse_right_clicked_position;
+        this->camera_center.setX(this->camera_center.x() - vec.x());
+        this->camera_center.setY(this->camera_center.y() + vec.y());
+        this->updateCameraMatrix();
+        this->mouse_right_clicked_position = event->pos();
     }
 }
 
 void MotionViewerWidget::wheelEvent(QWheelEvent *event){
     if(event->orientation() == Qt::Horizontal
             || (event->orientation() == Qt::Vertical && event->modifiers() & Qt::ShiftModifier)){
-        this->camera_angle += event->delta() / 100.0;
-        if(!this->isPlaying())
-            this->update();
+        qreal angle = this->camera_h_angle + event->delta() / 10000.0;
+        this->setCameraHorizontalAngle(angle);
     }
     else{
         this->fov *= pow(1.1 , event->delta() / 100.0);
@@ -224,4 +235,39 @@ void MotionViewerWidget::updatePerspective()
 
 const Motion* MotionViewerWidget::getMotion()const{
     return this->motion;
+}
+
+void MotionViewerWidget::updateCameraMatrix()
+{
+    this->camera_matrix.setToIdentity();
+    this->camera_matrix.lookAt(this->camera_position, this->camera_center, this->camera_up);
+//    QMatrix4x4 matrix;
+//    matrix.setToIdentity();
+//    matrix.translate(this->camera_translate);
+//    matrix.rotate(this->camera_angle, QVector3D(.0, 1.0, .0));
+//    matrix.translate(this->camera_center);
+//    this->camera_matrix = matrix.inverted();
+//    this->camera_matrix.setToIdentity();
+//    this->camera_matrix.translate(-1.0 * this->camera_translate);
+//    this->camera_matrix.rotate(-1.0 * this->camera_angle, QVector3D(.0, 1.0, .0));
+//    this->camera_matrix.translate(-1.0 * this->camera_center);
+    if(!this->isPlaying()){
+        this->update();
+    }
+}
+
+void MotionViewerWidget::setCameraHorizontalAngle(qreal angle){
+    this->camera_h_angle = angle;
+    QMatrix4x4 rot;
+    rot.rotate(this->camera_h_angle, this->camera_up);
+    this->camera_position = rot.mapVector(this->camera_position);
+    this->updateCameraMatrix();
+}
+
+void MotionViewerWidget::setCameraVerticalAngle(qreal angle){
+    this->camera_v_angle = angle;
+    QMatrix4x4 rot;
+    rot.rotate(-this->camera_v_angle, this->camera_right);
+    this->camera_position = rot.mapVector(this->camera_position);
+    this->updateCameraMatrix();
 }

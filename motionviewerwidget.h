@@ -70,8 +70,10 @@ private:
 
     QOpenGLShaderProgram program;
     QMatrix4x4 projection;
+    QMatrix4x4 camera_matrix;
 
-    QPoint mouseclicked_position;
+    QPoint mouse_left_clicked_position;
+    QPoint mouse_right_clicked_position;
 
     const qreal zNear = 3.0;
     const qreal zFar = 10000.0;
@@ -80,9 +82,17 @@ private:
     const qreal FOV_UPPER_LIMIT = 80;
     const qreal FOV_DOWN_LIMIT = -80;
     void updatePerspective();
+    void updateCameraMatrix();
 
-    QVector3D camera_translate = QVector3D(0, 750, 2500);
-    qreal camera_angle = .0;
+
+    QVector3D camera_position = QVector3D(0, 800, 2500);
+    QVector3D camera_center = QVector3D(0, 400, 0);
+    QVector3D camera_up = QVector3D(0, 1, 0);
+    QVector3D camera_right = QVector3D(1, 0 ,0);
+    qreal camera_h_angle = .0;
+    qreal camera_v_angle = .0;
+    void setCameraHorizontalAngle(qreal angle);
+    void setCameraVerticalAngle(qreal angle);
 };
 
 #endif // MOTIONVIEWERWIDGET_H
