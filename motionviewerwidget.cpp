@@ -30,7 +30,6 @@ MotionViewerWidget::MotionViewerWidget(QWidget* parent):
     connect(this, SIGNAL(motionChanged()), this, SLOT(onMotionChanged()));
     connect(this, SIGNAL(motionChanged()), this, SLOT(updateMotionProperties()));
     connect(this, SIGNAL(currentFrameChanged(int)), this, SLOT(update()));
-    this->updatePerspective();
     this->updateCameraMatrix();
 }
 
@@ -204,7 +203,6 @@ void MotionViewerWidget::mouseMoveEvent(QMouseEvent *event){
         QVector3D right_move = this->camera_right * vec.x();
         QVector3D up_move = this->camera_up * vec.y();
         this->camera_center += right_move + up_move;
-        this->camera_position += right_move + up_move;
         this->updateCameraMatrix();
         this->mouse_right_clicked_position = event->pos();
     }
@@ -216,14 +214,14 @@ void MotionViewerWidget::wheelEvent(QWheelEvent *event){
         this->addCameraHorizontalAngle(event->delta() / 100.0);
     }
     else{
-        this->fov *= pow(1.1 , event->delta() / 100.0);
-        if(this->fov > FOV_UPPER_LIMIT){
-            this->fov = FOV_UPPER_LIMIT;
+        this->camera_radius += event->delta() / 5.0;
+        if(this->camera_radius > this->maximum_camera_radius){
+            this->camera_radius = this->maximum_camera_radius;
         }
-        else if(this->fov < FOV_DOWN_LIMIT){
-            this->fov = FOV_DOWN_LIMIT;
+        else if(this->camera_radius < this->minimum_camera_radius){
+            this->camera_radius = this->minimum_camera_radius;
         }
-        this->updatePerspective();
+        this->updateCameraMatrix();
     }
 }
 
@@ -241,8 +239,20 @@ const Motion* MotionViewerWidget::getMotion()const{
 
 void MotionViewerWidget::updateCameraMatrix()
 {
+    qreal hsin = qSin(qDegreesToRadians(this->camera_h_angle));
+    qreal hcos = qCos(qDegreesToRadians(this->camera_h_angle));
+    qreal vsin = qSin(qDegreesToRadians(this->camera_v_angle));
+    qreal vcos = qCos(qDegreesToRadians(this->camera_v_angle));
+    QVector3D camera_position = QVector3D(
+        this->camera_radius * vcos * hcos,
+        this->camera_radius * vcos * hsin,
+        this->camera_radius * vsin
+    );
     this->camera_matrix.setToIdentity();
-    this->camera_matrix.lookAt(this->camera_position, this->camera_center, this->camera_up);
+    this->camera_matrix.lookAt(camera_position + this->camera_center, this->camera_center, this->camera_up);
+    qDebug() << this->camera_h_angle << this->camera_v_angle;
+    qDebug() << this->camera_center;
+    qDebug() << camera_position;
     if(!this->isPlaying()){
         this->update();
     }
@@ -252,7 +262,7 @@ void MotionViewerWidget::addCameraHorizontalAngle(qreal angle){
     this->camera_h_angle += angle;
     QMatrix4x4 rot;
     rot.rotate(angle, QVector3D(0, 1, 0));
-    this->camera_position = rot.mapVector(this->camera_position);
+    this->camera_up = rot.mapVector(this->camera_up);
     this->camera_right = rot.mapVector(this->camera_right);
     this->updateCameraMatrix();
 }
@@ -261,7 +271,7 @@ void MotionViewerWidget::addCameraVerticalAngle(qreal angle){
     this->camera_v_angle += angle;
     QMatrix4x4 rot;
     rot.rotate(-angle, this->camera_right);
-    this->camera_position = rot.mapVector(this->camera_position);
-    this->camera_up = QVector3D::crossProduct(this->camera_position, this->camera_right).normalized();
+    this->camera_up = rot.mapVector(this->camera_up);
+//    this->camera_up = QVector3D::crossProduct(this->camera_position, this->camera_right).normalized();
     this->updateCameraMatrix();
 }

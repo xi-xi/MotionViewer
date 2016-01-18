@@ -78,18 +78,17 @@ private:
     const qreal zNear = 3.0;
     const qreal zFar = 10000.0;
     qreal aspect;
-    qreal fov = 45.0;
-    const qreal FOV_UPPER_LIMIT = 80;
-    const qreal FOV_DOWN_LIMIT = -80;
+    const qreal fov = 45.0;
     void updatePerspective();
     void updateCameraMatrix();
 
-
-    const QVector3D default_camera_position = QVector3D(0, 800, 2500);
-    const QVector3D default_camera_center = QVector3D(0, 400, 0);
+    const qreal minimum_camera_radius = 1.0;
+    const qreal maximum_camera_radius = 5000.0;
+    const qreal default_camera_radius = 2500.0;
+    const QVector3D default_camera_center = QVector3D(0, 800, 0);
     const QVector3D default_camera_up = QVector3D(0, 1, 0);
-    const QVector3D default_camera_right = QVector3D(1, 0, 0);
-    QVector3D camera_position = default_camera_position;
+    const QVector3D default_camera_right = QVector3D(0, 0, -1);
+    qreal camera_radius = default_camera_radius;
     QVector3D camera_center = default_camera_center;
     QVector3D camera_up = default_camera_up;
     QVector3D camera_right = default_camera_right;
