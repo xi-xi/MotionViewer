@@ -85,14 +85,18 @@ private:
     void updateCameraMatrix();
 
 
-    QVector3D camera_position = QVector3D(0, 800, 2500);
-    QVector3D camera_center = QVector3D(0, 400, 0);
-    QVector3D camera_up = QVector3D(0, 1, 0);
-    QVector3D camera_right = QVector3D(1, 0 ,0);
+    const QVector3D default_camera_position = QVector3D(0, 800, 2500);
+    const QVector3D default_camera_center = QVector3D(0, 400, 0);
+    const QVector3D default_camera_up = QVector3D(0, 1, 0);
+    const QVector3D default_camera_right = QVector3D(1, 0, 0);
+    QVector3D camera_position = default_camera_position;
+    QVector3D camera_center = default_camera_center;
+    QVector3D camera_up = default_camera_up;
+    QVector3D camera_right = default_camera_right;
     qreal camera_h_angle = .0;
     qreal camera_v_angle = .0;
-    void setCameraHorizontalAngle(qreal angle);
-    void setCameraVerticalAngle(qreal angle);
+    void addCameraHorizontalAngle(qreal angle);
+    void addCameraVerticalAngle(qreal angle);
 };
 
 #endif // MOTIONVIEWERWIDGET_H
