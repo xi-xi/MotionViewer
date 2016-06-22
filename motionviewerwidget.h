@@ -23,6 +23,7 @@ public:
 
     bool isPlaying()const;
     const Motion* getMotion()const;
+    bool motionLoaded()const;
 
 public slots:
     void openMotionFile(const QString& filename);
