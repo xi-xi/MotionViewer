@@ -66,8 +66,8 @@ void MainWindow::initUI()
 
 void MainWindow::initLogic()
 {
-    this->connect(this, SIGNAL(motionFileChanged(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
-    this->connect(this, SIGNAL(motionFileChanged(QString)), this, SLOT(onMotionFileChanged(QString)));
+    this->connect(this, SIGNAL(motionFileChanging(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
+    this->connect(this, SIGNAL(motionFileChanging(QString)), this, SLOT(onMotionFileChanged(QString)));
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
     this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
@@ -86,7 +86,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::openMotionFile(const QString &filename){
-    emit this->motionFileChanged(filename);
+    emit this->motionFileChanging(filename);
 }
 
 void MainWindow::openFile()
@@ -99,7 +99,7 @@ void MainWindow::openFile()
     );
     if(filename.size() != 0)
     {
-        emit this->motionFileChanged(filename);
+        emit this->motionFileChanging(filename);
     }
 }
 

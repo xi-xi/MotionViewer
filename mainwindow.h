@@ -33,7 +33,7 @@ public slots:
     void onMotionFileChanged(const QString& filename);
 
 signals:
-    void motionFileChanged(const QString& filename);
+    void motionFileChanging(const QString& filename);
 
 private:
     QMenu *filemenu;
