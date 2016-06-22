@@ -67,7 +67,7 @@ void MainWindow::initUI()
 void MainWindow::initLogic()
 {
     this->connect(this, SIGNAL(motionFileChanging(QString)), this->viewerwidget, SLOT(openMotionFile(QString)));
-    this->connect(this, SIGNAL(motionFileChanging(QString)), this, SLOT(onMotionFileChanged(QString)));
+    this->connect(this, SIGNAL(motionFileChanging(QString)), this, SLOT(onMotionFileChanging(QString)));
     this->connect(this->openaction, SIGNAL(triggered()), this, SLOT(openFile()));
     this->connect(this->configureaction, SIGNAL(triggered()), this, SLOT(configure()));
     this->connect(this->closeaction, SIGNAL(triggered()), this, SLOT(close()));
@@ -77,6 +77,7 @@ void MainWindow::initLogic()
     this->connect(this->viewerwidget, SIGNAL(playStateChanged(bool)), this, SLOT(setPlayStopButtonState(bool)));
     this->connect(this->viewerwidget, SIGNAL(currentFrameChanged(int)), this->slider, SLOT(setValue(int)));
     this->connect(this->viewerwidget, SIGNAL(currentFrameChanged(int)), this->box, SLOT(setValue(int)));
+    this->connect(this->viewerwidget, SIGNAL(motionChanged()), this, SLOT(onMotionFileChanged()));
     this->connect(this->slider, SIGNAL(valueChanged(int)), this->viewerwidget, SLOT(setCurrentFrame(int)));
     this->connect(this->box, SIGNAL(valueChanged(int)), this->viewerwidget, SLOT(setCurrentFrame(int)));
 }
@@ -136,12 +137,17 @@ void MainWindow::nextButtonClicked()
     this->viewerwidget->setCurrentFrame(-1);
 }
 
-void MainWindow::onMotionFileChanged(const QString &filename){
+void MainWindow::onMotionFileChanging(const QString &filename){
     this->setWindowTitle("Motion Viewer  " + filename);
-    this->slider->setMinimum(1);
-    this->slider->setMaximum(this->viewerwidget->getMotion()->maxFlame());
-    this->box->setMinimum(1);
-    this->box->setMaximum(this->viewerwidget->getMotion()->maxFlame());
+}
+
+void MainWindow::onMotionFileChanged(){
+    if(this->viewerwidget->motionLoaded()){
+        this->slider->setMinimum(1);
+        this->slider->setMaximum(this->viewerwidget->getMotion()->maxFlame());
+        this->box->setMinimum(1);
+        this->box->setMaximum(this->viewerwidget->getMotion()->maxFlame());
+    }
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)

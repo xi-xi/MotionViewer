@@ -30,7 +30,8 @@ public slots:
     void backButtonClicked();
     void nextButtonClicked();
     void setPlayStopButtonState(bool isplaying);
-    void onMotionFileChanged(const QString& filename);
+    void onMotionFileChanging(const QString& filename);
+    void onMotionFileChanged();
 
 signals:
     void motionFileChanging(const QString& filename);
