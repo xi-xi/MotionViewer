@@ -237,6 +237,10 @@ const Motion* MotionViewerWidget::getMotion()const{
     return this->motion;
 }
 
+bool MotionViewerWidget::motionLoaded()const{
+    return this->motion_loaded;
+}
+
 void MotionViewerWidget::updateCameraMatrix()
 {
     qreal hsin = qSin(qDegreesToRadians(this->camera_h_angle));
