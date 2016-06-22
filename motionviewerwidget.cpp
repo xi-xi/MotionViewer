@@ -225,3 +225,7 @@ void MotionViewerWidget::updatePerspective()
 const Motion* MotionViewerWidget::getMotion()const{
     return this->motion;
 }
+
+bool MotionViewerWidget::motionLoaded()const{
+    return this->motion_loaded;
+}
