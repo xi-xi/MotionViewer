@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: mainwindow.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mainwindow.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d9/d53/mainwindow_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MAINWINDOW_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MAINWINDOW_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QMainWindow&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span>QMenu;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">class </span>QAction;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span>QToolBar;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span>QLabel;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span>QSlider;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span>QSpinBox;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="../../de/de6/class_motion_viewer_widget.html">MotionViewerWidget</a>;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="../../d9/dc6/class_main_window.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d9/dc6/class_main_window.html">MainWindow</a> : <span class="keyword">public</span> QMainWindow</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../d9/dc6/class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a>(QWidget *parent = 0);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="../../d9/dc6/class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a>();</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#a671bf73078069470c19965a3d948b6fa">dragEnterEvent</a>(QDragEnterEvent* event);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#ae7b97e68c51358f6f36be3c40b89c01c">dropEvent</a>(QDropEvent* event);</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#a9c4f542263838b9ecd06eae839a42a34">keyPressEvent</a>(QKeyEvent* event);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span> slots:</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#a288b768c3c21a9171bdc56fe845ece8b">openFile</a>();</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#af30451dd2d61aeb2f669bba4d67de0fa">openMotionFile</a>(<span class="keyword">const</span> QString&amp; filename);</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#aac674eb806b754fffbb67797730bd86d">configure</a>();</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#ad4c854c967a9a700a8bc634c34fad362">playstopButtonClicked</a>();</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#ae17d075c8fca4a5487809c224103c1b4">backButtonClicked</a>();</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#a278f6adbd7391b22ef647031efbd0385">nextButtonClicked</a>();</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#a36e73ffe36d8d6f769ccdc5e50de0aeb">setPlayStopButtonState</a>(<span class="keywordtype">bool</span> isplaying);</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#af3ea0503f3e9530963c35ee1ddcf4558">onMotionFileChanging</a>(<span class="keyword">const</span> QString&amp; filename);</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#ac05155718c5964a3d65652b99f4a403a">onMotionFileChanged</a>();</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;signals:</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d9/dc6/class_main_window.html#aaabd5f104403ed61623e4a75c6732cf8">motionFileChanging</a>(<span class="keyword">const</span> QString&amp; filename);</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    QMenu *filemenu;</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    QAction *openaction;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    QAction *configureaction;</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    QAction *closeaction;</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="../../de/de6/class_motion_viewer_widget.html">MotionViewerWidget</a> *viewerwidget;</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    QToolBar *operationbar;</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    QAction *back;</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    QAction *play_stop;</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    QAction *next;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    QSlider *slider;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    QSpinBox *box;</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    QLabel *maxframe_label;</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> initUI();</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">void</span> initLogic();</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif // MAINWINDOW_H</span></div><div class="ttc" id="class_main_window_html_a36e73ffe36d8d6f769ccdc5e50de0aeb"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#a36e73ffe36d8d6f769ccdc5e50de0aeb">MainWindow::setPlayStopButtonState</a></div><div class="ttdeci">void setPlayStopButtonState(bool isplaying)</div><div class="ttdoc">再生中であるかのフラグを変更します </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00121">mainwindow.cpp:121</a></div></div>
+<div class="ttc" id="class_main_window_html_ac05155718c5964a3d65652b99f4a403a"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#ac05155718c5964a3d65652b99f4a403a">MainWindow::onMotionFileChanged</a></div><div class="ttdeci">void onMotionFileChanged()</div><div class="ttdoc">モーションファイルが変更されたときに呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00144">mainwindow.cpp:144</a></div></div>
+<div class="ttc" id="class_motion_viewer_widget_html"><div class="ttname"><a href="../../de/de6/class_motion_viewer_widget.html">MotionViewerWidget</a></div><div class="ttdoc">モーションを描画するウィジェット </div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd8/motionviewerwidget_8h_source.html#l00020">motionviewerwidget.h:20</a></div></div>
+<div class="ttc" id="class_main_window_html_af3ea0503f3e9530963c35ee1ddcf4558"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#af3ea0503f3e9530963c35ee1ddcf4558">MainWindow::onMotionFileChanging</a></div><div class="ttdeci">void onMotionFileChanging(const QString &amp;filename)</div><div class="ttdoc">モーションファイルが変更されるときに呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00140">mainwindow.cpp:140</a></div></div>
+<div class="ttc" id="class_main_window_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00085">mainwindow.cpp:85</a></div></div>
+<div class="ttc" id="class_main_window_html_a671bf73078069470c19965a3d948b6fa"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#a671bf73078069470c19965a3d948b6fa">MainWindow::dragEnterEvent</a></div><div class="ttdeci">virtual void dragEnterEvent(QDragEnterEvent *event)</div><div class="ttdoc">何かがドラッグで持ち込まれた時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00153">mainwindow.cpp:153</a></div></div>
+<div class="ttc" id="class_main_window_html_ae7b97e68c51358f6f36be3c40b89c01c"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#ae7b97e68c51358f6f36be3c40b89c01c">MainWindow::dropEvent</a></div><div class="ttdeci">virtual void dropEvent(QDropEvent *event)</div><div class="ttdoc">何かがドロップされた時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00160">mainwindow.cpp:160</a></div></div>
+<div class="ttc" id="class_main_window_html_af30451dd2d61aeb2f669bba4d67de0fa"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#af30451dd2d61aeb2f669bba4d67de0fa">MainWindow::openMotionFile</a></div><div class="ttdeci">void openMotionFile(const QString &amp;filename)</div><div class="ttdoc">モーションファイルを開きます </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00089">mainwindow.cpp:89</a></div></div>
+<div class="ttc" id="class_main_window_html_ae17d075c8fca4a5487809c224103c1b4"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#ae17d075c8fca4a5487809c224103c1b4">MainWindow::backButtonClicked</a></div><div class="ttdeci">void backButtonClicked()</div><div class="ttdoc">前へボタンが押された時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00130">mainwindow.cpp:130</a></div></div>
+<div class="ttc" id="class_main_window_html_a9c4f542263838b9ecd06eae839a42a34"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#a9c4f542263838b9ecd06eae839a42a34">MainWindow::keyPressEvent</a></div><div class="ttdeci">virtual void keyPressEvent(QKeyEvent *event)</div><div class="ttdoc">キーが押された時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00178">mainwindow.cpp:178</a></div></div>
+<div class="ttc" id="class_main_window_html_a288b768c3c21a9171bdc56fe845ece8b"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#a288b768c3c21a9171bdc56fe845ece8b">MainWindow::openFile</a></div><div class="ttdeci">void openFile()</div><div class="ttdoc">ファイルを開くダイアログ表示などを行う </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00093">mainwindow.cpp:93</a></div></div>
+<div class="ttc" id="class_main_window_html_a8b244be8b7b7db1b08de2a2acb9409db"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=0)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00022">mainwindow.cpp:22</a></div></div>
+<div class="ttc" id="class_main_window_html_a278f6adbd7391b22ef647031efbd0385"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#a278f6adbd7391b22ef647031efbd0385">MainWindow::nextButtonClicked</a></div><div class="ttdeci">void nextButtonClicked()</div><div class="ttdoc">次へボタンが押された時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00135">mainwindow.cpp:135</a></div></div>
+<div class="ttc" id="class_main_window_html_aaabd5f104403ed61623e4a75c6732cf8"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#aaabd5f104403ed61623e4a75c6732cf8">MainWindow::motionFileChanging</a></div><div class="ttdeci">void motionFileChanging(const QString &amp;filename)</div><div class="ttdoc">モーションファイルが変更されようとしている場合にemitされるsignalです </div></div>
+<div class="ttc" id="class_main_window_html_ad4c854c967a9a700a8bc634c34fad362"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#ad4c854c967a9a700a8bc634c34fad362">MainWindow::playstopButtonClicked</a></div><div class="ttdeci">void playstopButtonClicked()</div><div class="ttdoc">再生/停止ボタンが押された時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00111">mainwindow.cpp:111</a></div></div>
+<div class="ttc" id="class_main_window_html_aac674eb806b754fffbb67797730bd86d"><div class="ttname"><a href="../../d9/dc6/class_main_window.html#aac674eb806b754fffbb67797730bd86d">MainWindow::configure</a></div><div class="ttdeci">void configure()</div><div class="ttdoc">メニュー中の設定ボタンが押された時に呼び出される </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd9/mainwindow_8cpp_source.html#l00107">mainwindow.cpp:107</a></div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="../../d9/dc6/class_main_window.html">MainWindow</a></div><div class="ttdoc">メインウインドウ </div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d53/mainwindow_8h_source.html#l00017">mainwindow.h:17</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

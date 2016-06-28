@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: planegeometryengine.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">planegeometryengine.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d8/d2a/planegeometryengine_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PLANEGEOMETRYENGINE_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PLANEGEOMETRYENGINE_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QOpenGLFunctions&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QOpenGLBuffer&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">class </span>QOpenGLShaderProgram;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span>QOpenGLTexture;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="../../d6/de1/class_plane_geometry_engine.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d6/de1/class_plane_geometry_engine.html">PlaneGeometryEngine</a> : <span class="keyword">protected</span> QOpenGLFunctions</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="../../d6/de1/class_plane_geometry_engine.html#a9fd852f65fc09b567660887ec1c19ee0">PlaneGeometryEngine</a>(<span class="keywordtype">float</span> scale = 1.0);</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="../../d6/de1/class_plane_geometry_engine.html#ae71900757a1bbd1c1dcada8bf5dacba3">~PlaneGeometryEngine</a>();</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d6/de1/class_plane_geometry_engine.html#a88e7c8227855a58a0e24b56ac07e625a">draw</a>(QOpenGLShaderProgram* program, <span class="keyword">const</span> QMatrix4x4&amp; vp_matrix);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> initTexture();</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> initGeometry();</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">float</span> scale;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    QOpenGLBuffer arraybuf;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    QOpenGLBuffer indexbuf;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    QOpenGLTexture *texture;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif // PLANEGEOMETRYENGINE_H</span></div><div class="ttc" id="class_plane_geometry_engine_html_a88e7c8227855a58a0e24b56ac07e625a"><div class="ttname"><a href="../../d6/de1/class_plane_geometry_engine.html#a88e7c8227855a58a0e24b56ac07e625a">PlaneGeometryEngine::draw</a></div><div class="ttdeci">void draw(QOpenGLShaderProgram *program, const QMatrix4x4 &amp;vp_matrix)</div><div class="ttdoc">描画します </div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d75/planegeometryengine_8cpp_source.html#l00058">planegeometryengine.cpp:58</a></div></div>
+<div class="ttc" id="class_plane_geometry_engine_html"><div class="ttname"><a href="../../d6/de1/class_plane_geometry_engine.html">PlaneGeometryEngine</a></div><div class="ttdoc">平面を描画するクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d2a/planegeometryengine_8h_source.html#l00013">planegeometryengine.h:13</a></div></div>
+<div class="ttc" id="class_plane_geometry_engine_html_a9fd852f65fc09b567660887ec1c19ee0"><div class="ttname"><a href="../../d6/de1/class_plane_geometry_engine.html#a9fd852f65fc09b567660887ec1c19ee0">PlaneGeometryEngine::PlaneGeometryEngine</a></div><div class="ttdeci">PlaneGeometryEngine(float scale=1.0)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d75/planegeometryengine_8cpp_source.html#l00014">planegeometryengine.cpp:14</a></div></div>
+<div class="ttc" id="class_plane_geometry_engine_html_ae71900757a1bbd1c1dcada8bf5dacba3"><div class="ttname"><a href="../../d6/de1/class_plane_geometry_engine.html#ae71900757a1bbd1c1dcada8bf5dacba3">PlaneGeometryEngine::~PlaneGeometryEngine</a></div><div class="ttdeci">~PlaneGeometryEngine()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d75/planegeometryengine_8cpp_source.html#l00026">planegeometryengine.cpp:26</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

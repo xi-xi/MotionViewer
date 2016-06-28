@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: motiongeometryengine.cpp ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">motiongeometryengine.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d4/df2/motiongeometryengine_8cpp.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../de/d88/motiongeometryengine_8h.html">motiongeometryengine.h</a>&quot;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;QMatrix4x4&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QList&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QPair&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QtMath&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QOpenGLTexture&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d7/d99/boxgeometryengine_8h.html">boxgeometryengine.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d3/d75/motion_8h.html">motion.h</a>&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/db6/drawconfigure_8h.html">drawconfigure.h</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="../../df/dee/class_motion_geometry_engine.html#abf0360e3ffe048500cb8c94e293df7db">   12</a></span>&#160;<a class="code" href="../../df/dee/class_motion_geometry_engine.html#abf0360e3ffe048500cb8c94e293df7db">MotionGeometryEngine::MotionGeometryEngine</a>()</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    this-&gt;initTexture();</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    this-&gt;config = <a class="code" href="../../d4/d4c/class_draw_configure.html#a466561182733062c9ad31bd65bfc4221">DrawConfigure::defaultConfigure</a>();</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    this-&gt;initBoxes();</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="../../df/dee/class_motion_geometry_engine.html#abe0ed99ea41f5dda544a2bb4de3adcdc">   19</a></span>&#160;<a class="code" href="../../df/dee/class_motion_geometry_engine.html#abe0ed99ea41f5dda544a2bb4de3adcdc">MotionGeometryEngine::~MotionGeometryEngine</a>()</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">delete</span> this-&gt;texture;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">delete</span> this-&gt;config;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    qDeleteAll(this-&gt;boxes);</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> MotionGeometryEngine::initTexture(){</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    this-&gt;texture = <span class="keyword">new</span> QOpenGLTexture(QImage(<span class="stringliteral">&quot;:/blackboard.png&quot;</span>).mirrored());</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    this-&gt;texture-&gt;setMinificationFilter(QOpenGLTexture::Nearest);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    this-&gt;texture-&gt;setMagnificationFilter(QOpenGLTexture::Linear);</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    this-&gt;texture-&gt;setWrapMode(QOpenGLTexture::Repeat);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> MotionGeometryEngine::initBoxes()</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; this-&gt;config-&gt;<a class="code" href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">getConnectJoints</a>().size();++i){</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        this-&gt;boxes.append(<span class="keyword">new</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html">BoxGeometryEngine</a>(1.0, 1.0, 1.0));</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="../../df/dee/class_motion_geometry_engine.html#aeaf0c1574d8bdf197e7dc323fba7ab8d">   40</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../df/dee/class_motion_geometry_engine.html#aeaf0c1574d8bdf197e7dc323fba7ab8d">MotionGeometryEngine::drawMotionGeometry</a>(QOpenGLShaderProgram *program, <span class="keyword">const</span> QMatrix4x4&amp; vp_matrix, <span class="keyword">const</span> <a class="code" href="../../de/dec/class_pose.html">Pose</a>* pose)</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    this-&gt;texture-&gt;bind();</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; this-&gt;config-&gt;<a class="code" href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">getConnectJoints</a>().size() ; ++i){</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span>(!pose-&gt;<a class="code" href="../../de/dec/class_pose.html#a4c8a497810a948d7327e381ecd2703f5">contain</a>(this-&gt;config-&gt;getConnectJoints()[i].first)</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                || !pose-&gt;<a class="code" href="../../de/dec/class_pose.html#a4c8a497810a948d7327e381ecd2703f5">contain</a>(this-&gt;config-&gt;getConnectJoints()[i].second)){</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">continue</span>;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        QVector3D first_position = pose-&gt;<a class="code" href="../../de/dec/class_pose.html#ab768c8bbce417b937d3b23ab5f8dce4f">at</a>(this-&gt;config-&gt;<a class="code" href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">getConnectJoints</a>()[i].first);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        QVector3D second_position = pose-&gt;<a class="code" href="../../de/dec/class_pose.html#ab768c8bbce417b937d3b23ab5f8dce4f">at</a>(this-&gt;config-&gt;<a class="code" href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">getConnectJoints</a>()[i].second);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        QMatrix4x4 model = this-&gt;calcModelMatrix(first_position, second_position);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        this-&gt;boxes[i]-&gt;setModelMatrix(model);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        this-&gt;boxes[i]-&gt;drawBoxGeometry(program, vp_matrix);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;QMatrix4x4 MotionGeometryEngine::calcModelMatrix(<span class="keyword">const</span> QVector3D &amp;first, <span class="keyword">const</span> QVector3D &amp;second)</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">float</span> length = (first - second).length();</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    QMatrix4x4 scale_matrix;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    scale_matrix.scale(config-&gt;<a class="code" href="../../d4/d4c/class_draw_configure.html#af4edd1b840287b25feb9aa2df815183c">box_size</a>.x() * 0.5, length * 0.5, config-&gt;<a class="code" href="../../d4/d4c/class_draw_configure.html#af4edd1b840287b25feb9aa2df815183c">box_size</a>.z() * 0.5);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">auto</span> dif = (second - first).normalized();</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">auto</span> axis = QVector3D::crossProduct(QVector3D(0, 1, 0), dif);</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">auto</span> angle =qRadiansToDegrees(acos(QVector3D::dotProduct(QVector3D(0, 1, 0), dif)));</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    QMatrix4x4 rotate_matrix;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    rotate_matrix.rotate(angle, axis);</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    QMatrix4x4 trans_matrix;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">auto</span> trans = (first + second) / 2.0;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    trans_matrix.translate(trans);</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> trans_matrix * rotate_matrix * scale_matrix;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div><div class="ttc" id="class_motion_geometry_engine_html_abf0360e3ffe048500cb8c94e293df7db"><div class="ttname"><a href="../../df/dee/class_motion_geometry_engine.html#abf0360e3ffe048500cb8c94e293df7db">MotionGeometryEngine::MotionGeometryEngine</a></div><div class="ttdeci">MotionGeometryEngine()</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/df2/motiongeometryengine_8cpp_source.html#l00012">motiongeometryengine.cpp:12</a></div></div>
+<div class="ttc" id="class_pose_html_ab768c8bbce417b937d3b23ab5f8dce4f"><div class="ttname"><a href="../../de/dec/class_pose.html#ab768c8bbce417b937d3b23ab5f8dce4f">Pose::at</a></div><div class="ttdeci">const QVector3D at(const QString &amp;name) const </div><div class="ttdoc">関節名から関節位置を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00018">pose.cpp:18</a></div></div>
+<div class="ttc" id="class_pose_html"><div class="ttname"><a href="../../de/dec/class_pose.html">Pose</a></div><div class="ttdoc">ある瞬間の姿勢を表すクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d7/def/pose_8h_source.html#l00011">pose.h:11</a></div></div>
+<div class="ttc" id="class_draw_configure_html_af4edd1b840287b25feb9aa2df815183c"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#af4edd1b840287b25feb9aa2df815183c">DrawConfigure::box_size</a></div><div class="ttdeci">QVector3D box_size</div><div class="ttdoc">描画に用いる箱のサイズ </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/db6/drawconfigure_8h_source.html#l00070">drawconfigure.h:70</a></div></div>
+<div class="ttc" id="motiongeometryengine_8h_html"><div class="ttname"><a href="../../de/d88/motiongeometryengine_8h.html">motiongeometryengine.h</a></div></div>
+<div class="ttc" id="class_draw_configure_html_a466561182733062c9ad31bd65bfc4221"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#a466561182733062c9ad31bd65bfc4221">DrawConfigure::defaultConfigure</a></div><div class="ttdeci">static DrawConfigure * defaultConfigure(QObject *parent=0)</div><div class="ttdoc">デフォルトの描画設定を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00038">drawconfigure.cpp:38</a></div></div>
+<div class="ttc" id="class_motion_geometry_engine_html_aeaf0c1574d8bdf197e7dc323fba7ab8d"><div class="ttname"><a href="../../df/dee/class_motion_geometry_engine.html#aeaf0c1574d8bdf197e7dc323fba7ab8d">MotionGeometryEngine::drawMotionGeometry</a></div><div class="ttdeci">void drawMotionGeometry(QOpenGLShaderProgram *program, const QMatrix4x4 &amp;vp_matrix, const Pose *pose)</div><div class="ttdoc">必要な情報をもとに，Poseを描画します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/df2/motiongeometryengine_8cpp_source.html#l00040">motiongeometryengine.cpp:40</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html">BoxGeometryEngine</a></div><div class="ttdoc">箱を描画するクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d99/boxgeometryengine_8h_source.html#l00013">boxgeometryengine.h:13</a></div></div>
+<div class="ttc" id="class_motion_geometry_engine_html_abe0ed99ea41f5dda544a2bb4de3adcdc"><div class="ttname"><a href="../../df/dee/class_motion_geometry_engine.html#abe0ed99ea41f5dda544a2bb4de3adcdc">MotionGeometryEngine::~MotionGeometryEngine</a></div><div class="ttdeci">virtual ~MotionGeometryEngine()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/df2/motiongeometryengine_8cpp_source.html#l00019">motiongeometryengine.cpp:19</a></div></div>
+<div class="ttc" id="boxgeometryengine_8h_html"><div class="ttname"><a href="../../d7/d99/boxgeometryengine_8h.html">boxgeometryengine.h</a></div></div>
+<div class="ttc" id="class_draw_configure_html_aeed9344245c1c55912d3c6ab8005887f"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">DrawConfigure::getConnectJoints</a></div><div class="ttdeci">const QList&lt; QPair&lt; QString, QString &gt; &gt; &amp; getConnectJoints()</div><div class="ttdoc">接続すると設定されている関節のペアを返す </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00138">drawconfigure.cpp:138</a></div></div>
+<div class="ttc" id="motion_8h_html"><div class="ttname"><a href="../../d3/d75/motion_8h.html">motion.h</a></div></div>
+<div class="ttc" id="class_pose_html_a4c8a497810a948d7327e381ecd2703f5"><div class="ttname"><a href="../../de/dec/class_pose.html#a4c8a497810a948d7327e381ecd2703f5">Pose::contain</a></div><div class="ttdeci">bool contain(const QString &amp;name) const </div><div class="ttdoc">この姿勢が関節名を含むかを返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00023">pose.cpp:23</a></div></div>
+<div class="ttc" id="drawconfigure_8h_html"><div class="ttname"><a href="../../d1/db6/drawconfigure_8h.html">drawconfigure.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

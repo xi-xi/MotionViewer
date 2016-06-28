@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: boxgeometryengine.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">boxgeometryengine.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/d99/boxgeometryengine_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef BOXGEOMETRYENGINE_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define BOXGEOMETRYENGINE_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QOpenGLFunctions&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QOpenGLShaderProgram&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QOpenGLBuffer&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="../../dc/dde/class_box_geometry_engine.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../dc/dde/class_box_geometry_engine.html">BoxGeometryEngine</a> : <span class="keyword">protected</span> QOpenGLFunctions</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a8d95adc3266a5f0fbb1346fccc3b04d5">BoxGeometryEngine</a>();</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a8d95adc3266a5f0fbb1346fccc3b04d5">BoxGeometryEngine</a>(<span class="keywordtype">float</span> w, <span class="keywordtype">float</span> h, <span class="keywordtype">float</span> d);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a4c79b9ea7902319851ef58c777f6e8eb">~BoxGeometryEngine</a>();</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#aeabeb3db7a2414575deda850f223717b">drawBoxGeometry</a>(QOpenGLShaderProgram* program, <span class="keyword">const</span> QMatrix4x4&amp; vp_matrix);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a8ed5a8db4de1b33f38de1f53db706555">setWidth</a>(<span class="keywordtype">float</span> val);</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a33498f272f0c477de44c5b2a5cde460e">setHeight</a>(<span class="keywordtype">float</span> val);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a0515460a407ee983b4c08a22e48c0ba2">setDepth</a>(<span class="keywordtype">float</span> val);</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#acf659d2ea6e03acbd0a5fb7360eafa30">setWHD</a>(<span class="keywordtype">float</span> w, <span class="keywordtype">float</span> h, <span class="keywordtype">float</span> d);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a7518fdbf5ce086126e8e6c33d6d2338e">setModelMatrix</a>(<span class="keyword">const</span> QMatrix4x4&amp; matrix);</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a324d2472e16c702af62b6fc37c4bbb1f">getWidth</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#aa0373bee1a084d124626d865b531ce47">getHeight</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../dc/dde/class_box_geometry_engine.html#a3d92ffe3b412580f6b40d16809807ec5">getDepth</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">const</span> QMatrix4x4&amp; <a class="code" href="../../dc/dde/class_box_geometry_engine.html#ae84429f9e55e56b39135ad0ae041d569">getModelMatrix</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> initBoxGeometry();</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">void</span> updateModelMatrix();</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">float</span> width;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">float</span> height;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">float</span> depth;</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    QOpenGLBuffer arraybuf;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    QOpenGLBuffer indexbuf;</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    QMatrix4x4 model_matrix;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif // BOXGEOMETRYENGINE_H</span></div><div class="ttc" id="class_box_geometry_engine_html_aa0373bee1a084d124626d865b531ce47"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#aa0373bee1a084d124626d865b531ce47">BoxGeometryEngine::getHeight</a></div><div class="ttdeci">float getHeight() const </div><div class="ttdoc">高さを指定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00139">boxgeometryengine.cpp:139</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a7518fdbf5ce086126e8e6c33d6d2338e"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a7518fdbf5ce086126e8e6c33d6d2338e">BoxGeometryEngine::setModelMatrix</a></div><div class="ttdeci">void setModelMatrix(const QMatrix4x4 &amp;matrix)</div><div class="ttdoc">モデル行列を設定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00147">boxgeometryengine.cpp:147</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_aeabeb3db7a2414575deda850f223717b"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#aeabeb3db7a2414575deda850f223717b">BoxGeometryEngine::drawBoxGeometry</a></div><div class="ttdeci">void drawBoxGeometry(QOpenGLShaderProgram *program, const QMatrix4x4 &amp;vp_matrix)</div><div class="ttdoc">描画します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00095">boxgeometryengine.cpp:95</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html">BoxGeometryEngine</a></div><div class="ttdoc">箱を描画するクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d99/boxgeometryengine_8h_source.html#l00013">boxgeometryengine.h:13</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a8ed5a8db4de1b33f38de1f53db706555"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a8ed5a8db4de1b33f38de1f53db706555">BoxGeometryEngine::setWidth</a></div><div class="ttdeci">void setWidth(float val)</div><div class="ttdoc">横幅を設定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00112">boxgeometryengine.cpp:112</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_acf659d2ea6e03acbd0a5fb7360eafa30"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#acf659d2ea6e03acbd0a5fb7360eafa30">BoxGeometryEngine::setWHD</a></div><div class="ttdeci">void setWHD(float w, float h, float d)</div><div class="ttdoc">縦横奥行きを同時に指定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00128">boxgeometryengine.cpp:128</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a8d95adc3266a5f0fbb1346fccc3b04d5"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a8d95adc3266a5f0fbb1346fccc3b04d5">BoxGeometryEngine::BoxGeometryEngine</a></div><div class="ttdeci">BoxGeometryEngine()</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00012">boxgeometryengine.cpp:12</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a33498f272f0c477de44c5b2a5cde460e"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a33498f272f0c477de44c5b2a5cde460e">BoxGeometryEngine::setHeight</a></div><div class="ttdeci">void setHeight(float val)</div><div class="ttdoc">縦幅を設定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00118">boxgeometryengine.cpp:118</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a3d92ffe3b412580f6b40d16809807ec5"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a3d92ffe3b412580f6b40d16809807ec5">BoxGeometryEngine::getDepth</a></div><div class="ttdeci">float getDepth() const </div><div class="ttdoc">奥行きを取得します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00143">boxgeometryengine.cpp:143</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a324d2472e16c702af62b6fc37c4bbb1f"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a324d2472e16c702af62b6fc37c4bbb1f">BoxGeometryEngine::getWidth</a></div><div class="ttdeci">float getWidth() const </div><div class="ttdoc">幅を取得します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00135">boxgeometryengine.cpp:135</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a0515460a407ee983b4c08a22e48c0ba2"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a0515460a407ee983b4c08a22e48c0ba2">BoxGeometryEngine::setDepth</a></div><div class="ttdeci">void setDepth(float val)</div><div class="ttdoc">奥行きを設定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00123">boxgeometryengine.cpp:123</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_ae84429f9e55e56b39135ad0ae041d569"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#ae84429f9e55e56b39135ad0ae041d569">BoxGeometryEngine::getModelMatrix</a></div><div class="ttdeci">const QMatrix4x4 &amp; getModelMatrix() const </div><div class="ttdoc">モデル行列を取得します </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00151">boxgeometryengine.cpp:151</a></div></div>
+<div class="ttc" id="class_box_geometry_engine_html_a4c79b9ea7902319851ef58c777f6e8eb"><div class="ttname"><a href="../../dc/dde/class_box_geometry_engine.html#a4c79b9ea7902319851ef58c777f6e8eb">BoxGeometryEngine::~BoxGeometryEngine</a></div><div class="ttdeci">virtual ~BoxGeometryEngine()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d63/boxgeometryengine_8cpp_source.html#l00037">boxgeometryengine.cpp:37</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
