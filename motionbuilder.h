@@ -8,10 +8,25 @@ class QString;
 class Motion;
 class Pose;
 
+/*!
+ * \brief 各種ファイルからMotionクラスを構築する手法を提供します
+ */
 class MotionBuilder : public QObject
 {
     Q_OBJECT
 public:
+    /*!
+     * \brief ファイルからMotionクラスを構築します
+     * \param filename ファイル名
+     * \param parent Motionインスタンスの親
+     * \return Motionインスタンス
+     *
+     * ファイルがどのような形式であるかは拡張子によって判断されます．
+     * 拡張子によって自動的に判断され，内部的に関数を使い分けています．
+     * もし対応していないファイル形式が渡された場合にはnullptrを返します．
+     *
+     * \sa Motion
+     */
     static Motion* open(const QString& filename, QObject* parent=0);
 
 private:
