@@ -1,3 +1,10 @@
+/*! \mainpage 簡易モーションビューワ
+ *
+ * とっても簡単に作った簡易的なモーションビューワです．
+ * 慌てて作ったので未実装な機能などが多い．
+ * 一応見た目上は動くはず...
+ */
+
 #include "mainwindow.h"
 #include <QApplication>
 #include <QSurfaceFormat>
