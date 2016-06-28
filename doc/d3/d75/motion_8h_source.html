@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: motion.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">motion.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/d75/motion_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MOTION_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MOTION_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QTextStream&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d7/def/pose_8h.html">pose.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="../../d4/d9a/class_motion.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d4/d9a/class_motion.html">Motion</a> : <span class="keyword">public</span> QObject</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../d4/d9a/class_motion.html#a41801131aff0a4ef969fd8d3bad93206">Motion</a>(QObject *parent = 0);</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="../../d4/d9a/class_motion.html#a3989871f9b2b9b69c88b5437b40a72c6">~Motion</a>();</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="../../d4/d9a/class_motion.html#aeaf96a51a34b27c6ff9571626e375f93">   38</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="../../de/dec/class_pose.html">Pose</a>* <a class="code" href="../../d4/d9a/class_motion.html#aeaf96a51a34b27c6ff9571626e375f93">operator[]</a>(<span class="keywordtype">int</span> frame)<span class="keyword">const</span>{</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d4/d9a/class_motion.html#a73a0ba4bcde29cba1e1697d14fdaf15c">at</a>(frame);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="../../d4/d9a/class_motion.html#ab558b56881589154d1f894ccd1b7ce76">   52</a></span>&#160;    <a class="code" href="../../de/dec/class_pose.html">Pose</a>* <a class="code" href="../../d4/d9a/class_motion.html#ab558b56881589154d1f894ccd1b7ce76">operator[]</a>(<span class="keywordtype">int</span> frame){</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d4/d9a/class_motion.html#a73a0ba4bcde29cba1e1697d14fdaf15c">at</a>(frame);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">const</span> <a class="code" href="../../de/dec/class_pose.html">Pose</a>* <a class="code" href="../../d4/d9a/class_motion.html#a73a0ba4bcde29cba1e1697d14fdaf15c">at</a>(<span class="keywordtype">int</span> frame)<span class="keyword">const</span>;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="../../de/dec/class_pose.html">Pose</a>* <a class="code" href="../../d4/d9a/class_motion.html#a73a0ba4bcde29cba1e1697d14fdaf15c">at</a>(<span class="keywordtype">int</span> frame);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">set</span>(<span class="keywordtype">int</span> frame, <a class="code" href="../../de/dec/class_pose.html">Pose</a>* pose);</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../d4/d9a/class_motion.html#abcee185bb4b8c5493c6813b66bc1e0fc">fps</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d4/d9a/class_motion.html#a854358077aad48cfc6ab1f270e4e8950">setFps</a>(<span class="keywordtype">float</span> fps);</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="../../d4/d9a/class_motion.html#a2017893ffe564508d8e2d8cf7571005a">maxFlame</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d4/d9a/class_motion.html#aee509c9b645b89ddd7646f5cea6a260e">setMaxFlame</a>(<span class="keywordtype">int</span> max_frame);</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">const</span> QStringList&amp; <a class="code" href="../../d4/d9a/class_motion.html#a8798dc2f430821ac8b72d7cec2c0e904">markers</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d4/d9a/class_motion.html#a7272c90262727d111225744d69d8bbfb">setMarkers</a>(<span class="keyword">const</span> QStringList&amp; markers);</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;signals:</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">public</span> slots:</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    QMap&lt;int, Pose*&gt; poses;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    QStringList markers_;</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">float</span> fps_;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordtype">int</span> maxFrame_;</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;};</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif // MOTION_H</span></div><div class="ttc" id="class_motion_html_a73a0ba4bcde29cba1e1697d14fdaf15c"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a73a0ba4bcde29cba1e1697d14fdaf15c">Motion::at</a></div><div class="ttdeci">const Pose * at(int frame) const </div><div class="ttdoc">フレーム番号における姿勢を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00017">motion.cpp:17</a></div></div>
+<div class="ttc" id="class_motion_html_aeaf96a51a34b27c6ff9571626e375f93"><div class="ttname"><a href="../../d4/d9a/class_motion.html#aeaf96a51a34b27c6ff9571626e375f93">Motion::operator[]</a></div><div class="ttdeci">const Pose * operator[](int frame) const </div><div class="ttdoc">インデクサのオーバーロード </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d75/motion_8h_source.html#l00038">motion.h:38</a></div></div>
+<div class="ttc" id="class_motion_html_a2017893ffe564508d8e2d8cf7571005a"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a2017893ffe564508d8e2d8cf7571005a">Motion::maxFlame</a></div><div class="ttdeci">int maxFlame() const </div><div class="ttdoc">フレーム値の最大値を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00033">motion.cpp:33</a></div></div>
+<div class="ttc" id="class_motion_html_a3989871f9b2b9b69c88b5437b40a72c6"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a3989871f9b2b9b69c88b5437b40a72c6">Motion::~Motion</a></div><div class="ttdeci">~Motion()</div><div class="ttdoc">デストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00012">motion.cpp:12</a></div></div>
+<div class="ttc" id="class_pose_html"><div class="ttname"><a href="../../de/dec/class_pose.html">Pose</a></div><div class="ttdoc">ある瞬間の姿勢を表すクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d7/def/pose_8h_source.html#l00011">pose.h:11</a></div></div>
+<div class="ttc" id="class_motion_html_aee509c9b645b89ddd7646f5cea6a260e"><div class="ttname"><a href="../../d4/d9a/class_motion.html#aee509c9b645b89ddd7646f5cea6a260e">Motion::setMaxFlame</a></div><div class="ttdeci">void setMaxFlame(int max_frame)</div><div class="ttdoc">フレーム値の最大値を設定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00037">motion.cpp:37</a></div></div>
+<div class="ttc" id="class_motion_html_abcee185bb4b8c5493c6813b66bc1e0fc"><div class="ttname"><a href="../../d4/d9a/class_motion.html#abcee185bb4b8c5493c6813b66bc1e0fc">Motion::fps</a></div><div class="ttdeci">float fps() const </div><div class="ttdoc">fpsを取得します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00025">motion.cpp:25</a></div></div>
+<div class="ttc" id="class_motion_html"><div class="ttname"><a href="../../d4/d9a/class_motion.html">Motion</a></div><div class="ttdoc">モーションを表すクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d75/motion_8h_source.html#l00013">motion.h:13</a></div></div>
+<div class="ttc" id="class_motion_html_a41801131aff0a4ef969fd8d3bad93206"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a41801131aff0a4ef969fd8d3bad93206">Motion::Motion</a></div><div class="ttdeci">Motion(QObject *parent=0)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00006">motion.cpp:6</a></div></div>
+<div class="ttc" id="class_motion_html_a7272c90262727d111225744d69d8bbfb"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a7272c90262727d111225744d69d8bbfb">Motion::setMarkers</a></div><div class="ttdeci">void setMarkers(const QStringList &amp;markers)</div><div class="ttdoc">マーカ文字列を設定します． </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00045">motion.cpp:45</a></div></div>
+<div class="ttc" id="class_motion_html_a854358077aad48cfc6ab1f270e4e8950"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a854358077aad48cfc6ab1f270e4e8950">Motion::setFps</a></div><div class="ttdeci">void setFps(float fps)</div><div class="ttdoc">fpsを設定します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00029">motion.cpp:29</a></div></div>
+<div class="ttc" id="pose_8h_html"><div class="ttname"><a href="../../d7/def/pose_8h.html">pose.h</a></div></div>
+<div class="ttc" id="class_motion_html_a8798dc2f430821ac8b72d7cec2c0e904"><div class="ttname"><a href="../../d4/d9a/class_motion.html#a8798dc2f430821ac8b72d7cec2c0e904">Motion::markers</a></div><div class="ttdeci">const QStringList &amp; markers() const </div><div class="ttdoc">マーカ文字列を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/motion_8cpp_source.html#l00041">motion.cpp:41</a></div></div>
+<div class="ttc" id="class_motion_html_ab558b56881589154d1f894ccd1b7ce76"><div class="ttname"><a href="../../d4/d9a/class_motion.html#ab558b56881589154d1f894ccd1b7ce76">Motion::operator[]</a></div><div class="ttdeci">Pose * operator[](int frame)</div><div class="ttdoc">インデクサのオーバーロード </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d75/motion_8h_source.html#l00052">motion.h:52</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

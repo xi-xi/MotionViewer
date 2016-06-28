@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: drawconfigure.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">drawconfigure.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/db6/drawconfigure_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DRAWCONFIGURE_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DRAWCONFIGURE_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QList&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QPair&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;QVector3D&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="../../d4/d4c/class_draw_configure.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d4/d4c/class_draw_configure.html">DrawConfigure</a> : <span class="keyword">public</span> QObject</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <a class="code" href="../../d4/d4c/class_draw_configure.html">DrawConfigure</a>* <a class="code" href="../../d4/d4c/class_draw_configure.html#aa300f081de0df89fe1078791f0569a9b">fromJsonFile</a>(<span class="keyword">const</span> QString&amp; filename, QObject* parent = 0);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <a class="code" href="../../d4/d4c/class_draw_configure.html">DrawConfigure</a>* <a class="code" href="../../d4/d4c/class_draw_configure.html#a70704d377129974b3f77f9c40b1d6fcc">fromJsonString</a>(<span class="keyword">const</span> QString&amp; text, QObject* parent = 0);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> <a class="code" href="../../d4/d4c/class_draw_configure.html">DrawConfigure</a>* <a class="code" href="../../d4/d4c/class_draw_configure.html#a466561182733062c9ad31bd65bfc4221">defaultConfigure</a>(QObject* parent = 0);</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../d4/d4c/class_draw_configure.html#a92c2f688a24cbd520b798597e2929065">DrawConfigure</a>(QObject *parent = 0);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">const</span> QList&lt;QPair&lt;QString, QString&gt;&gt;&amp; <a class="code" href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">getConnectJoints</a>();</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d4/d4c/class_draw_configure.html#a71e433ca401f33cdde8a4b16639e0f69">addConnectJoint</a>(QString a, QString b);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="../../d4/d4c/class_draw_configure.html#af4edd1b840287b25feb9aa2df815183c">   70</a></span>&#160;    QVector3D <a class="code" href="../../d4/d4c/class_draw_configure.html#af4edd1b840287b25feb9aa2df815183c">box_size</a>;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;signals:</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">public</span> slots:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    QList&lt;QPair&lt;QString, QString&gt;&gt; connect_joints;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif // DRAWCONFIGURE_H</span></div><div class="ttc" id="class_draw_configure_html"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html">DrawConfigure</a></div><div class="ttdoc">描画に関する設定 </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/db6/drawconfigure_8h_source.html#l00016">drawconfigure.h:16</a></div></div>
+<div class="ttc" id="class_draw_configure_html_af4edd1b840287b25feb9aa2df815183c"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#af4edd1b840287b25feb9aa2df815183c">DrawConfigure::box_size</a></div><div class="ttdeci">QVector3D box_size</div><div class="ttdoc">描画に用いる箱のサイズ </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/db6/drawconfigure_8h_source.html#l00070">drawconfigure.h:70</a></div></div>
+<div class="ttc" id="class_draw_configure_html_a466561182733062c9ad31bd65bfc4221"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#a466561182733062c9ad31bd65bfc4221">DrawConfigure::defaultConfigure</a></div><div class="ttdeci">static DrawConfigure * defaultConfigure(QObject *parent=0)</div><div class="ttdoc">デフォルトの描画設定を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00038">drawconfigure.cpp:38</a></div></div>
+<div class="ttc" id="class_draw_configure_html_a92c2f688a24cbd520b798597e2929065"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#a92c2f688a24cbd520b798597e2929065">DrawConfigure::DrawConfigure</a></div><div class="ttdeci">DrawConfigure(QObject *parent=0)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00133">drawconfigure.cpp:133</a></div></div>
+<div class="ttc" id="class_draw_configure_html_aeed9344245c1c55912d3c6ab8005887f"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#aeed9344245c1c55912d3c6ab8005887f">DrawConfigure::getConnectJoints</a></div><div class="ttdeci">const QList&lt; QPair&lt; QString, QString &gt; &gt; &amp; getConnectJoints()</div><div class="ttdoc">接続すると設定されている関節のペアを返す </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00138">drawconfigure.cpp:138</a></div></div>
+<div class="ttc" id="class_draw_configure_html_aa300f081de0df89fe1078791f0569a9b"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#aa300f081de0df89fe1078791f0569a9b">DrawConfigure::fromJsonFile</a></div><div class="ttdeci">static DrawConfigure * fromJsonFile(const QString &amp;filename, QObject *parent=0)</div><div class="ttdoc">json形式のファイルから設定を読みだします </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00008">drawconfigure.cpp:8</a></div></div>
+<div class="ttc" id="class_draw_configure_html_a70704d377129974b3f77f9c40b1d6fcc"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#a70704d377129974b3f77f9c40b1d6fcc">DrawConfigure::fromJsonString</a></div><div class="ttdeci">static DrawConfigure * fromJsonString(const QString &amp;text, QObject *parent=0)</div><div class="ttdoc">json形式文字列からファイル設定を作ります </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00017">drawconfigure.cpp:17</a></div></div>
+<div class="ttc" id="class_draw_configure_html_a71e433ca401f33cdde8a4b16639e0f69"><div class="ttname"><a href="../../d4/d4c/class_draw_configure.html#a71e433ca401f33cdde8a4b16639e0f69">DrawConfigure::addConnectJoint</a></div><div class="ttdeci">void addConnectJoint(QString a, QString b)</div><div class="ttdoc">接続する関節を増やします </div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dc1/drawconfigure_8cpp_source.html#l00142">drawconfigure.cpp:142</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

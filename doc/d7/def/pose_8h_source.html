@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>簡易モーションビューワ: pose.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">簡易モーションビューワ
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../pages.html"><span>諸情報</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">pose.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/def/pose_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef POSE_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define POSE_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QVector3D&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="../../de/dec/class_pose.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../de/dec/class_pose.html">Pose</a> : <span class="keyword">public</span> QObject</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="../../de/dec/class_pose.html#a3d9a0653f3f0b5af441e3741e87c74e9">Pose</a>(QObject *parent = 0);</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../de/dec/class_pose.html#a568ba741672433bfda515ca7ecf1069d">addJointData</a>(<span class="keyword">const</span> QString&amp; name, <span class="keyword">const</span> QVector3D&amp; position);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../de/dec/class_pose.html#a568ba741672433bfda515ca7ecf1069d">addJointData</a>(<span class="keyword">const</span> QString &amp;name, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="../../de/dec/class_pose.html#a65816b52a683ef448d27245812a3da3f">   46</a></span>&#160;    <span class="keyword">const</span> QVector3D <a class="code" href="../../de/dec/class_pose.html#a65816b52a683ef448d27245812a3da3f">operator[]</a>(<span class="keyword">const</span> QString&amp; name)<span class="keyword">const</span>{</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../de/dec/class_pose.html#ab768c8bbce417b937d3b23ab5f8dce4f">at</a>(name);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> QVector3D <a class="code" href="../../de/dec/class_pose.html#ab768c8bbce417b937d3b23ab5f8dce4f">at</a>(<span class="keyword">const</span> QString&amp; name)<span class="keyword">const</span>;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../de/dec/class_pose.html#a4c8a497810a948d7327e381ecd2703f5">contain</a>(<span class="keyword">const</span> QString&amp; name)<span class="keyword">const</span>;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    QList&lt;QString&gt; <a class="code" href="../../de/dec/class_pose.html#a4b0f8e2a7ec1b03a775ad5aa64e51bb5">getJointsName</a>()<span class="keyword">const</span>;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;signals:</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">public</span> slots:</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    QMap&lt;QString, QVector3D&gt; joint_positions;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif // POSE_H</span></div><div class="ttc" id="class_pose_html_a3d9a0653f3f0b5af441e3741e87c74e9"><div class="ttname"><a href="../../de/dec/class_pose.html#a3d9a0653f3f0b5af441e3741e87c74e9">Pose::Pose</a></div><div class="ttdeci">Pose(QObject *parent=0)</div><div class="ttdoc">コンストラクタ </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00003">pose.cpp:3</a></div></div>
+<div class="ttc" id="class_pose_html_ab768c8bbce417b937d3b23ab5f8dce4f"><div class="ttname"><a href="../../de/dec/class_pose.html#ab768c8bbce417b937d3b23ab5f8dce4f">Pose::at</a></div><div class="ttdeci">const QVector3D at(const QString &amp;name) const </div><div class="ttdoc">関節名から関節位置を返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00018">pose.cpp:18</a></div></div>
+<div class="ttc" id="class_pose_html"><div class="ttname"><a href="../../de/dec/class_pose.html">Pose</a></div><div class="ttdoc">ある瞬間の姿勢を表すクラス </div><div class="ttdef"><b>Definition:</b> <a href="../../d7/def/pose_8h_source.html#l00011">pose.h:11</a></div></div>
+<div class="ttc" id="class_pose_html_a4b0f8e2a7ec1b03a775ad5aa64e51bb5"><div class="ttname"><a href="../../de/dec/class_pose.html#a4b0f8e2a7ec1b03a775ad5aa64e51bb5">Pose::getJointsName</a></div><div class="ttdeci">QList&lt; QString &gt; getJointsName() const </div><div class="ttdoc">関節名のリストを返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00028">pose.cpp:28</a></div></div>
+<div class="ttc" id="class_pose_html_a65816b52a683ef448d27245812a3da3f"><div class="ttname"><a href="../../de/dec/class_pose.html#a65816b52a683ef448d27245812a3da3f">Pose::operator[]</a></div><div class="ttdeci">const QVector3D operator[](const QString &amp;name) const </div><div class="ttdoc">インデクサのオーバーロード </div><div class="ttdef"><b>Definition:</b> <a href="../../d7/def/pose_8h_source.html#l00046">pose.h:46</a></div></div>
+<div class="ttc" id="class_pose_html_a4c8a497810a948d7327e381ecd2703f5"><div class="ttname"><a href="../../de/dec/class_pose.html#a4c8a497810a948d7327e381ecd2703f5">Pose::contain</a></div><div class="ttdeci">bool contain(const QString &amp;name) const </div><div class="ttdoc">この姿勢が関節名を含むかを返します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00023">pose.cpp:23</a></div></div>
+<div class="ttc" id="class_pose_html_a568ba741672433bfda515ca7ecf1069d"><div class="ttname"><a href="../../de/dec/class_pose.html#a568ba741672433bfda515ca7ecf1069d">Pose::addJointData</a></div><div class="ttdeci">void addJointData(const QString &amp;name, const QVector3D &amp;position)</div><div class="ttdoc">関節データを追加します </div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/pose_8cpp_source.html#l00008">pose.cpp:8</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
