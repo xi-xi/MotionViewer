@@ -94,6 +94,8 @@ void MotionViewerWidget::paintGL()
     this->plane->draw(&this->program, projection * matrix);
     if(!this->motion_loaded)
         return;
+    if(!this->motion->contain(this->current_frame))
+        return;
     this->geometries->drawMotionGeometry(
                 &this->program,
                 projection * matrix,
