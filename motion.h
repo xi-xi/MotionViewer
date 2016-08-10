@@ -69,6 +69,13 @@ public:
     Pose* at(int frame);
 
     /*!
+     * \brief あるフレーム番号の姿勢を有するかを返します
+     * \param frame フレーム番号
+     * \return 姿勢をデータとして持っているならtrue
+     */
+    bool contain(int frame)const;
+
+    /*!
      * \brief フレーム番号における姿勢を設定します．
      * \param frame フレーム番号
      * \param pose 姿勢

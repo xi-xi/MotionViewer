@@ -49,3 +49,7 @@ void Motion::setMarkers(const QStringList &markers){
 void Motion::set(int frame, Pose *pose){
     this->poses[frame] = pose;
 }
+
+bool Motion::contain(int frame) const{
+    return this->poses.contains(frame);
+}
